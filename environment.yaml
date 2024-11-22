@@ -15,4 +15,6 @@ dependencies:
   - vegafusion=1.4.3
   - vl-convert-python=1.0.1
   - jupyterlab
+  - conda-lock
+  - matplotlib
 prefix: /Users/nicholasvarabioff/miniforge3/envs/car_evaluation_analysis
