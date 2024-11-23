@@ -43,18 +43,11 @@ Next, under the "Kernel" menu click "Restart Kernel and Run All Cells...".
 
 ## Dependencies
 
-* altair=5.1.2
-* ipykernel=6.26.0
-* pandas=2.1.2
-* python=3.11.6
-* scikit-learn=1.3.2
-* vegafusion=1.4.3
-* vegafusion-jupyter=1.4.3
-* vegafusion-python-embed=1.4.3
-* vl-convert-python=1.0.1
-* requests=2.31.0
-* notebook=6.5.4
-* jupyter_contrib_nbextensions=0.7.0
+* `conda`
+* `conda-lock`
+* `jupyterlab`
+* `nb_conda_kernels`
+* Python and packages listed in `environment.yml`
 
 ## License
 
