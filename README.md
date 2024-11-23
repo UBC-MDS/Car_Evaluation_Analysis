@@ -24,7 +24,7 @@ It was sourced from the UCI Machine Learning Repository and is publicly availabl
 
 ## Report
 
-The final report can be found (here)[https://github.com/UBC-MDS/Car_Evaluation_Analysis/blob/main/notebooks/car_evaluation_analysis.pdf].
+The final report can be found [here](https://github.com/UBC-MDS/Car_Evaluation_Analysis/blob/main/notebooks/car_evaluation_analysis.pdf).
 
 ## Usage
 To run this project, follow these steps from the root of this repository:
