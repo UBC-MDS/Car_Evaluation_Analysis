@@ -22,6 +22,10 @@ This analysis aims to identify the key factors that determine whether a car is c
 The dataset used in this project is the Car Evaluation Database created by M. Bohanec and V. Rajkovic in the early 1990s. 
 It was sourced from the UCI Machine Learning Repository and is publicly available for research and can be found in the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/19/car+evaluation).
 
+## Report
+
+The final report can be found [here](https://github.com/UBC-MDS/Car_Evaluation_Analysis/blob/main/notebooks/car_evaluation_analysis.pdf).
+
 ## Usage
 To run this project, follow these steps from the root of this repository:
 
