@@ -1,6 +1,7 @@
 services:
-  analysis-env:
-    image: xximing/dsci522-car-evaluation:0e28cdd
+  # run jupyter notebook inside jupyter 
+  jupyter-notebook:
+    image:  xximing/dsci522-car-evaluation:1303a54
     ports:
       - "8888:8888"
     volumes:
