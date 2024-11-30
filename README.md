@@ -74,7 +74,7 @@ The final report can be found [here](https://github.com/UBC-MDS/Car_Evaluation_A
 
 2. Add dependency to the `environment.yaml` file. Make sure to pin the desired package version.
 
-3. Update the `conda-lock_linux-64.yml` by running the following command-line command from the root of the project:
+3. Update the `conda-linux-64.yml` by running the following command-line command from the root of the project:
 
     ```bash
     conda-lock -k explicit --file environment.yml -p linux-64
