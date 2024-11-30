@@ -1,0 +1,12 @@
+services:
+  analysis-env:
+    image: xximing/dsci522-car-evaluation:0e28cdd
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/home/jovyan
+    deploy:
+      resources:
+        limits:
+          memory: 5G
+    platform: linux/amd64
