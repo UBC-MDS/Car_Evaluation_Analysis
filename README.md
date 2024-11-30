@@ -50,6 +50,8 @@ The final report can be found [here](https://github.com/UBC-MDS/Car_Evaluation_A
 
 3. In the terminal, look for a URL that starts with `http://127.0.0.1:8888/lab?token=` as shown in the image below. Copy and paste that URL into your browser. This will launch Jupyter Lab.
 
+    ![jupyter-container-web-app-launch-url](./img/jupyter-container-web-app-launch-url.png)
+
 4. In the Jupyter Lab window, navigate to `notebooks/Car_Evaluation_Analysis.ipynb`.
 
 5. Under the "Kernel" menu, click "Restart Kernel and Run All Cells."
@@ -62,10 +64,8 @@ The final report can be found [here](https://github.com/UBC-MDS/Car_Evaluation_A
 
 ### Developer Dependencies
 
-* `conda` (version ...)
-* `conda-lock` (version ...)
-* `jupyterlab` (version ...)
-* `nb_conda_kernels` (version ...)
+* `conda` (version 23.9.0 or higher)
+* `conda-lock` (version 2.5.7 or higher)
 * Python and packages listed in `environment.yml`
 
 ### Adding a New Dependency
