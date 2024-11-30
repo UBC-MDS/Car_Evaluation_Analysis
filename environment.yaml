@@ -20,5 +20,3 @@ dependencies:
   - requests=2.31.0
   - pandera=0.17.1
   - pydantic=1.10.12 
-  - pip:
-      - deepchecks==0.18.1
