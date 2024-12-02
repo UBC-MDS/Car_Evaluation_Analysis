@@ -6,8 +6,8 @@ import click
 import os
 import pickle
 import numpy as np
-import pandas as pd
 import pandera as pa
+import pandas as pd
 from sklearn import set_config
 from sklearn.compose import make_column_transformer
 from sklearn.model_selection import train_test_split
@@ -15,10 +15,10 @@ from sklearn.preprocessing import OrdinalEncoder
 
 
 @click.command()
-@click.option('--raw-data-dir', type=str, help="Path to raw data directory")
-@click.option('--data-to', type=str, help="Path to directory where processed data will be written to")
-@click.option('--preprocessor-to', type=str, help="Path to directory where the preprocessor object will be written to")
-@click.option('--seed', type=int, help="Random seed", default=123)
+@click.option('--raw-data', type=str, help='Path to raw data')
+@click.option('--data-to', type=str, help='Path to directory where processed data will be written to')
+@click.option('--preprocessor-to', type=str, help='Path to directory where the preprocessor object will be written to')
+@click.option('--seed', type=int, help='Random seed', default=123)
 
 
 def main(raw_data, data_to, preprocessor_to, seed):
@@ -28,13 +28,18 @@ def main(raw_data, data_to, preprocessor_to, seed):
     It also saves the preprocessor to be used in the model training script.
     '''
     np.random.seed(seed)
-    set_config(transform_output="pandas")
+    set_config(transform_output='pandas')
     
     # import raw data
     # data located at https://archive.ics.uci.edu/dataset/19/car+evaluation
     colnames = ['buying','maint','doors','persons','lug_boot','safety','class']
-    car_data = pd.read_csv(raw_data, names=colnames, header=None)
-    
+    car_data = pd.read_csv(raw_data, names=colnames, header=0)
+    print(car_data)
+    # train test split, export to csv
+    car_train, car_test = train_test_split(
+        car_data, train_size=0.8, random_state=522, stratify=car_data['class']
+    )
+
     # Validate data schema with Pandera
     # Correct data types in each column
     # No duplicate observations,
@@ -55,13 +60,8 @@ def main(raw_data, data_to, preprocessor_to, seed):
     )
     schema.validate(car_data, lazy=True)
 
-    # train test split, export to csv
-    car_train, car_test = train_test_split(
-        car_data, train_size=0.8, random_state=522, stratify=car_data['class']
-    )
-
-    car_train.to_csv(os.path.join(data_to, "car_train.csv"), index=False)
-    car_test.to_csv(os.path.join(data_to, "car_test.csv"), index=False)
+    car_train.to_csv(os.path.join(data_to, 'car_train.csv'), index=False)
+    car_test.to_csv(os.path.join(data_to, 'car_test.csv'), index=False)
 
     # preprocessing
     # transform categorical features
@@ -75,7 +75,7 @@ def main(raw_data, data_to, preprocessor_to, seed):
         remainder='passthrough',
         verbose_feature_names_out=False
     )
-    pickle.dump(car_preprocessor, open(os.path.join(preprocessor_to, "car_preprocessor.pickle"), "wb"))
+    pickle.dump(car_preprocessor, open(os.path.join(preprocessor_to, 'car_preprocessor.pickle'), 'wb'))
     
     car_preprocessor.fit(car_train)
     encoded_car_train = car_preprocessor.transform(car_train)
@@ -85,8 +85,8 @@ def main(raw_data, data_to, preprocessor_to, seed):
     encoded_car_train = pd.DataFrame(encoded_car_train, columns=names)
     encoded_car_test = pd.DataFrame(encoded_car_test, columns=names)
 
-    encoded_car_train.to_csv(os.path.join(data_to, "encoded_car_train.csv"), index=False)
-    encoded_car_test.to_csv(os.path.join(data_to, "encoded_car_test.csv"), index=False)
+    encoded_car_train.to_csv(os.path.join(data_to, 'encoded_car_train.csv'), index=False)
+    encoded_car_test.to_csv(os.path.join(data_to, 'encoded_car_test.csv'), index=False)
 
 
 if __name__ == '__main__':
