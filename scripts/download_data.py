@@ -8,6 +8,7 @@
 
 import click
 import os
+import pandas as pd
 from ucimlrepo import fetch_ucirepo
 
 @click.command()
@@ -23,12 +24,11 @@ def main(data_to):
     car_evaluation = fetch_ucirepo(id=19)
 
     # data (as pandas dataframes)
-    X = car_evaluation.data.features
-    y = car_evaluation.data.targets
+    car_data_raw = car_evaluation.data.original
+    # print(car_evaluation.data.original)
 
     # save data
-    X.to_csv(os.path.join(data_to, 'car_features_raw.csv'))
-    y.to_csv(os.path.join(data_to, 'car_targets_raw.csv'))
+    car_data_raw.to_csv(os.path.join(data_to, 'car_data_raw.csv'))
 
     # print metadata
     # print(car_evaluation.metadata)

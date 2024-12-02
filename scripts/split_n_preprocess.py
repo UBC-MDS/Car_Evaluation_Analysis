@@ -15,7 +15,7 @@ from sklearn.preprocessing import OrdinalEncoder
 
 
 @click.command()
-@click.option('--raw-data', type=str, help="Path to raw data")
+@click.option('--raw-data-dir', type=str, help="Path to raw data directory")
 @click.option('--data-to', type=str, help="Path to directory where processed data will be written to")
 @click.option('--preprocessor-to', type=str, help="Path to directory where the preprocessor object will be written to")
 @click.option('--seed', type=int, help="Random seed", default=123)
