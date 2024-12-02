@@ -34,7 +34,7 @@ def main(raw_data, data_to, preprocessor_to, seed):
     # data located at https://archive.ics.uci.edu/dataset/19/car+evaluation
     colnames = ['buying','maint','doors','persons','lug_boot','safety','class']
     car_data = pd.read_csv(raw_data, names=colnames, header=0)
-    print(car_data)
+
     # train test split, export to csv
     car_train, car_test = train_test_split(
         car_data, train_size=0.8, random_state=522, stratify=car_data['class']
