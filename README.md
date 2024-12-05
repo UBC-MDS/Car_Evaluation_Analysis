@@ -82,6 +82,11 @@ The final report can be found [here](https://github.com/UBC-MDS/Car_Evaluation_A
 
 4. Rebuild the Docker image locally to ensure it builds and runs properly.
 
+    ```bash
+    docker build --tag env-test --platform=linux/amd64 .
+    docker run --rm -it --platform=linux/amd64 env-test /bin/bash
+    ```
+
 5. Push the changes to GitHub. A new Docker image will be built and pushed to DockerHub automatically. It will be tagged with the SHA for the commit that changed the file.
 
 6. Update the `docker-compose.yaml` file on your branch to use the new container image (make sure to update the tag specifically).
