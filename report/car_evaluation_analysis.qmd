@@ -13,6 +13,7 @@ execute:
     echo: false
     warning: false
 editor: source
+bibliography: references.bib
 ---
 
 ```{python}
@@ -25,7 +26,7 @@ import pickle
 
 ## Summary
 
-In this project, we attempt to predict the level of acceptability of cars by building a machine learning model. To choose the best model for this task, we utilised several common machine learning models, and found out that the SVM RBF classifier achieved the best train and cross-validation scores, with a test accuracy of 0.952. On the 346 test data cases, it correctly predicted the targets of 343 examples, while there were only 3 examples with incorrect predicted targets.
+In this project, we attempt to predict the level of acceptability of cars by building a machine learning model in Python [@Python]. To choose the best model for this task, we utilised several common machine learning models, and found out that the SVM RBF classifier achieved the best train and cross-validation scores, with a test accuracy of 0.952. On the 346 test data cases, it correctly predicted the targets of 343 examples, while there were only 3 examples with incorrect predicted targets.
 
 The SVM RBF model also showed exceptional ability in determining the acceptability of cars as seen in the confusion matrix, classification reports, and relatively high scores for precision, recall and F1. However, a slight decrease in classification precision was observed for the “good” category, together with a relatively lower recall score of 0.86 that indicates occasional classification errors. Nonetheless, the results obtained from this analysis further exemplifies the ability of the SVM RBF model in handling nonlinear decision boundaries. This makes the SVM RBF model a solid choice for this project.
 
@@ -92,5 +93,3 @@ To further improve the model's utility, several changes can be made. One such ch
 By allowing the model to take in more complex data, this may allow the model to make more accurate predictions to let customers make a more informed choice when purchasing a new car.
 
 ## References
-
-References goes here
