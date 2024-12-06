@@ -13,7 +13,6 @@ import matplotlib.pyplot as plt
 @click.command()
 @click.option('--training-data', type=str, help="Path to training data")
 @click.option('--preprocessor', type=str, help="Path to preprocessor object")
-@click.option('--columns-to-drop', type=str, help="Optional: columns to drop")
 @click.option('--pipeline-to', type=str, help="Path to directory where the pipeline object will be written to")
 @click.option('--plot-to', type=str, help="Path to directory where the plot will be written to")
 @click.option('--seed', type=int, help="Random seed", default=123)
@@ -25,7 +24,8 @@ def main(training_data, preprocessor, pipeline_to, plot_to, seed):
     np.random.seed(seed)
     set_config(transform_output="pandas")
     car_train = pd.read_csv(training_data)
-    car_preprocessor = pickle.load(open(preprocessor), "rb")
+    car_preprocessor = pickle.load(open(preprocessor, "rb"))
+
     
     svc = SVC()
     car_pipe = make_pipeline(car_preprocessor, svc)
