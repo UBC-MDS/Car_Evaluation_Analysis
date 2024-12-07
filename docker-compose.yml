@@ -1,7 +1,7 @@
 services:
   # run jupyter notebook inside jupyter 
   jupyter-notebook:
-    image:  xximing/dsci522-car-evaluation:036d270
+    image:  xximing/dsci522-car-evaluation:bcf922c
     ports:
       - "8888:8888"
     volumes:
