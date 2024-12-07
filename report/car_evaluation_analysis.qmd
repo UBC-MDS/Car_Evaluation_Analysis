@@ -29,7 +29,6 @@ from deepchecks.tabular import Dataset
 from deepchecks.checks import ClassImbalance, FeatureLabelCorrelation, FeatureFeatureCorrelation
 import pandera as pa
 from IPython.display import Markdown, display
-from tabulate import tabulate
 ```
 ```{python}
 test_scores_df = pd.read_csv("../results/tables/test_scores.csv").round(2)
@@ -66,9 +65,11 @@ The dataset that was used in this project is of Car Evaluation Database created 
 ### Analysis
 With the best model identified, the next step was to improve its performance through hyperparameter optimization. Using RandomizedSearchCV, a range of values for the SVM’s hyperparameters C and gamma were explored. This approach allowed for an efficient and thorough search across the parameter space, and results in an optimal esitimator to use.
 
-The visualizations below, including a heatmap (@heatmap_tuning) of test scores obtained during hyperparameter optimization. This interpretability aids in understanding which parameters are most critical and how sensitive the model is to these settings.
+The visualizations below, including a heatmap (@fig-heatmaptuning) of test scores obtained during hyperparameter optimization. This interpretability aids in understanding which parameters are most critical and how sensitive the model is to these settings.
 
-![Heatmap of test scores obtained during hyperparameter optimisation](../results/figures/car_hyperparameter.png){#heatmap_tuning, width=100%}
+![Heatmap of test scores obtained during hyperparameter optimisation](../results/figures/car_hyperparameter.png){#fig-heatmaptuning width=70%}
+
+
 
 We observed that the best hyperparameter of $C$ and $gamma$ are `{python} car_eva.best_params_['svc__C']` and `{python} car_eva.best_params_['svc__gamma']`. All categorical features are one hot encoded prior to model fitting. The Python programming language [@Python] and the following Python packages were used to perform the analysis: numpy [@harris2020array], Pandas [@mckinney-proc-scipy-2010], matplotlib [@Hunter:2007], scikit-learn [@scikit-learn].  The code used to perform the analysis and create this report can be found here: https://github.com/UBC-MDS/Car_Evaluation_Analysis/blob/main/scripts
 
