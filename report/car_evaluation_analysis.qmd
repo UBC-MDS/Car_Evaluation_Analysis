@@ -26,8 +26,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.compose import make_column_transformer
 from sklearn.preprocessing import OrdinalEncoder
 import pickle
-from deepchecks.tabular import Dataset
-from deepchecks.checks import ClassImbalance, FeatureLabelCorrelation, FeatureFeatureCorrelation
 import pandera as pa
 ```
 ```{python}
@@ -36,11 +34,19 @@ with open('../results/models/car_analysis.pickle', 'rb') as f:
     car_eva = pickle.load(f)
 
 ```
+
 ## Summary
 
-In this project, we attempt to predict the level of acceptability of cars by building a machine learning model in Python [@Python]. To choose the best model for this task, we utilised several common machine learning models, and found out that the SVM RBF classifier achieved the best train and cross-validation scores, with a test accuracy of 0.952. On the 346 test data cases, it correctly predicted the targets of 343 examples, while there were only 3 examples with incorrect predicted targets.
+In this project, we attempt to predict the level of acceptability of cars by building a machine learning model in Python [@Python]. 
+To choose the best model for this task, we utilised several common machine learning models, 
+and found out that the SVM RBF classifier achieved the best train and cross-validation scores, with a test accuracy of 0.952. 
+On the 346 test data cases, it correctly predicted the targets of 343 examples, 
+while there were only 3 examples with incorrect predicted targets.
 
-The SVM RBF model also showed exceptional ability in determining the acceptability of cars as seen in the confusion matrix, classification reports, and relatively high scores for precision, recall and F1. However, a slight decrease in classification precision was observed for the “good” category, together with a relatively lower recall score of 0.86 that indicates occasional classification errors. Nonetheless, the results obtained from this analysis further exemplifies the ability of the SVM RBF model in handling nonlinear decision boundaries. This makes the SVM RBF model a solid choice for this project.
+The SVM RBF model also showed exceptional ability in determining the acceptability of cars as seen in the confusion matrix, classification reports, and relatively high scores for precision, recall and F1. 
+However, a slight decrease in classification precision was observed for the “good” category, together with a relatively lower recall score of 0.86 that indicates occasional classification errors. 
+Nonetheless, the results obtained from this analysis further exemplifies the ability of the SVM RBF model in handling nonlinear decision boundaries. 
+This makes the SVM RBF model a solid choice for this project.
 
 ## Introduction
 
@@ -61,36 +67,6 @@ Each row in the dataset details a car’s attributes (each feature is of categor
 -   Boot size: `small`, `med`, `big`
 -   Safety rating: `low`, `med`, `high`
 
-
-### Analysis
-With the best model identified, the next step was to improve its performance through hyperparameter optimization. Using RandomizedSearchCV, a range of values for the SVM’s hyperparameters C and gamma were explored. This approach allowed for an efficient and thorough search across the parameter space, and results in an optimal esitimator to use.
-
-The visualizations below, including a heatmap (@fig-heatmaptuning) of test scores obtained during hyperparameter optimization. This interpretability aids in understanding which parameters are most critical and how sensitive the model is to these settings.
-
-![Heatmap of test scores obtained during hyperparameter optimisation](../results/figures/car_hyperparameter.png){#fig-heatmaptuning width=70%}
-
-
-
-We observed that the best hyperparameter of $C$ and $gamma$ are `{python} car_eva.best_params_['svc__C']` and `{python} car_eva.best_params_['svc__gamma']`. All categorical features are one hot encoded prior to model fitting. The Python programming language [@Python] and the following Python packages were used to perform the analysis: numpy [@harris2020array], Pandas [@mckinney-proc-scipy-2010], matplotlib [@Hunter:2007], scikit-learn [@scikit-learn].  The code used to perform the analysis and create this report can be found here: https://github.com/UBC-MDS/Car_Evaluation_Analysis/blob/main/scripts
-
-## Results & Discussion
-
-After performing hyperparameter optimisation, the RBF SVM model with `C=100.0` and `gamma=0.1` achieved the best performance on the test set with a score of `{python} test_scores_df['accuracy'].values[0]`.
-This suggests the model has been generalised well, with high scores on both the train and test sets.
-
-To further improve the model's utility, several changes can be made.
-One such change is feeding the model with features that are not just categorical.
-Instead, for features such as buying price, maintenance cost and safety features, numeric data should be used.
-At the same time, more features can be included, such as the type of car and and fuel efficiency ratings.
-
-By allowing the model to take in more complex data, this may allow the model to make more accurate predictions to let customers make a more informed choice when purchasing a new car.
-
-
-## References
-
-<!--
-Everything below shall not be on the final report
--->
 ### Data Import and Validation
 
 ### Exploratory Data Analysis
@@ -105,7 +81,7 @@ Through this analysis, we can see that examples with target class `unacceptable`
 
 We preprocess the dataset to prepare it for machine learning: 
 
-- Transform categorical features using `OrdinalEncoder` from scikit-learn
+- Transform categorical features using `OrdinalEncoder` from scikit-learn 
 - Split the dataset into training and testing sets
 
 ### Model Selection
@@ -139,18 +115,27 @@ Therefore, we will be using SVM RBF for this project.
 
 ### Model Optimisation
 
-Next, hyperparameter optimisation will be carried out with `RandomizedSearchCV` to obtain the best performing SVM RBF model for this project.
-The visualizations below allow us to gain a better understanding of how each hyperparameter affects the performance of the model.
+With the best model identified, the next step was to improve its performance through hyperparameter optimization. Using RandomizedSearchCV, a range of values for the SVM’s hyperparameters C and gamma were explored. This approach allowed for an efficient and thorough search across the parameter space, and results in an optimal esitimator to use.
 
-Figure 2: Heatmap of test scores obtained during hyperparameter optimisation.
+The visualizations below, including a heatmap (@fig-heatmaptuning) of test scores obtained during hyperparameter optimization. This interpretability aids in understanding which parameters are most critical and how sensitive the model is to these settings.
 
-As the score report has indicated, our model has performed extremely well, achieving a test accuracy of 0.991. This means that our model is predicting well on unseen data.
+![Heatmap of test scores obtained during hyperparameter optimisation](../results/figures/car_hyperparameter.png){#fig-heatmaptuning width=70%}
+
+We observed that the best hyperparameter of `C` and `gamma` are `{python} car_eva.best_params_['svc__C']` and `{python} car_eva.best_params_['svc__gamma']` respectively. 
+All categorical features were passed through `OrdinalEncoder` prior to model fitting. 
+The Python programming language [@Python] and the following Python packages were used to perform the analysis: numpy [@harris2020array], Pandas [@mckinney-proc-scipy-2010], matplotlib [@Hunter:2007], scikit-learn [@scikit-learn].
+The code used to perform the analysis and create this report can be found here: [https://github.com/UBC-MDS/Car_Evaluation_Analysis/blob/main/scripts](https://github.com/UBC-MDS/Car_Evaluation_Analysis/blob/main/scripts)
 
 ## Results & Discussion
 
-After performing hyperparameter optimisation, the best SVM RBF model managed to achieve a score of 0.99 on the test set. This suggests the model has been generalised well, with high scores on both the train and test sets.
+After performing hyperparameter optimisation, the SVM RBF model manage to achieve the best score of `{python} test_scores_df['accuracy'].values[0]` on the test.
+This suggests the model has been generalised well, with high scores on both the train and test sets.
 
-To further improve the model's utility, several changes can be made. One such change is feeding the model with features that are not just categorical. Instead, for features such as buying price, maintenance cost and safety features, numeric data should be used. At the same time, more features can be included, such as the type of car and and fuel efficiency ratings.
+To further improve the model's utility, several changes can be made.
+One such change is feeding the model with features that are not just categorical.
+Instead, for features such as buying price, maintenance cost and safety features, numeric data should be used.
+At the same time, more features can be included, such as the type of car and and fuel efficiency ratings.
 
 By allowing the model to take in more complex data, this may allow the model to make more accurate predictions to let customers make a more informed choice when purchasing a new car.
 
+## References
