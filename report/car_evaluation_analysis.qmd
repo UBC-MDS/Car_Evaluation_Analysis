@@ -84,6 +84,12 @@ At the same time, more features can be included, such as the type of car and and
 
 By allowing the model to take in more complex data, this may allow the model to make more accurate predictions to let customers make a more informed choice when purchasing a new car.
 
+
+## References
+
+<!--
+Everything below shall not be on the final report
+-->
 ### Data Import and Validation
 
 ### Exploratory Data Analysis
@@ -125,4 +131,3 @@ To further improve the model's utility, several changes can be made. One such ch
 
 By allowing the model to take in more complex data, this may allow the model to make more accurate predictions to let customers make a more informed choice when purchasing a new car.
 
-## References
