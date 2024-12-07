@@ -84,16 +84,6 @@ At the same time, more features can be included, such as the type of car and and
 
 By allowing the model to take in more complex data, this may allow the model to make more accurate predictions to let customers make a more informed choice when purchasing a new car.
 
-```{python}
-# import raw data
-# data located at https://archive.ics.uci.edu/dataset/19/car+evaluation
-
-colnames = ['buying','maint','doors','persons','lug_boot','safety','class']
-car_data = pd.read_csv('../data/raw/car.data', names=colnames, header=None)
-
-car_data.head()
-```
-
 ### Data Import and Validation
 
 ### Exploratory Data Analysis
