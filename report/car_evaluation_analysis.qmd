@@ -1,25 +1,26 @@
 ---
-title: Predicing Level of Acceptability of Cars using Machine Learning
-author: " Danish Karlin Isa & Nicholas Varabioff & Ximin Xu & Zuer Zhong"
-date: "2024/12/06"
+title: "Predicing Level of Acceptability of Cars using Machine Learning"
+author: "Danish Karlin Isa, Nicholas Varabioff, Ximin Xu & Zuer Zhong"
+date: today
 jupyter: python3
 format: 
     html:
         toc: true
-        toc-depth: 2
+        toc-depth: 3
     pdf:
         toc: true
-        toc-depth: 2
+        toc-depth: 3
 bibliography: references.bib
 execute:
     echo: false
     warning: false
-
 ---
 
 ```{python}
 # imports
 import pandas as pd
+from IPython.display import Markdown, display
+from tabulate import tabulate
 import altair as alt
 from sklearn.model_selection import train_test_split
 from sklearn.compose import make_column_transformer
@@ -28,7 +29,6 @@ import pickle
 from deepchecks.tabular import Dataset
 from deepchecks.checks import ClassImbalance, FeatureLabelCorrelation, FeatureFeatureCorrelation
 import pandera as pa
-from IPython.display import Markdown, display
 ```
 ```{python}
 test_scores_df = pd.read_csv("../results/tables/test_scores.csv").round(2)
@@ -46,13 +46,13 @@ The SVM RBF model also showed exceptional ability in determining the acceptabili
 
 The Car Evaluation Dataset was created as part of efforts to understand the factors that affect the acceptability of cars among consumers. These factors include buying price of a car, maintenance costs, passenger and luggage capacity, and safety. The goal of this project is to develop a machine learning model that can evaluate the quality of a car based on its attributes to help buyers make a more informed decision for their next car purchase.
 
-The RBF SVM model is known for its effectiveness in nonlinear classification tasks, and its use is particularly useful at navigating the complexities of car evaluation. We expected the model to perform well. In our tests, we also found that it outperformed other models such as Naive Bayes and logistic regression. Our findings suggest a potential class imbalance or capacity limitation in the model's ability to adequately capture the nuances of the “good” classes. This raises questions about the ideal modeling approach for such datasets.
-
 ## Methods
 
 ### Data
 
-The dataset that was used in this project is of Car Evaluation Database created by the efforts of M. Bohanec and V. Rajkovic in the early 1990s. It is sourced from the UCI Machine Learning Repository and is publicly available for research and can be found in the [UCI Machine Learning Repository](https://archive.ics.uci.edu/dataset/19/car+evaluation). Each row in the dataset details a car’s attributes (each feature is of categorical data type with several levels), which includes:
+The dataset that was used in this project is of Car Evaluation Database [@dataset] created by the efforts of M. Bohanec in the late 1980s. It is sourced from the UCI Machine Learning Repository and is publicly available for research. 
+
+Each row in the dataset details a car’s attributes (each feature is of categorical data type with several levels), which includes:
 
 -   Buying price: `low`, `med`, `high`, `vhigh`
 -   Maintenance cost: `low`, `med`, `high`, `vhigh`
@@ -105,28 +105,50 @@ Through this analysis, we can see that examples with target class `unacceptable`
 
 We preprocess the dataset to prepare it for machine learning: 
 
-- Transform categorical features using`OrdinalEncoder`
+- Transform categorical features using `OrdinalEncoder` from scikit-learn
 - Split the dataset into training and testing sets
 
 ### Model Selection
 
 The core of this project is choosing the appropriate machine learning model. 
-Thus, several machine learning models will be evaluated using `cross_validate` from `sklearn`.
+Thus, several machine learning models from scikit-learn [@scikit-learn] will be evaluated using cross-validation. 
+The models evaluated are:
 
+- `DummyClassifier` (Dummy), which serves as a baseline to compare the performance of other models,
+- `DecisionTreeClassifier` (Decision Tree),
+- `KNeighboursClassifier` (KNN),
+- `SVC` with RBF kernel (SVM RBF),
+- Naive Bayes using `MultinomialNB` (Naive Bayes), and
+- `LogisticRegression` (Logistic Regression).
 
-According to our cross-validation results, SVM RBF achieved the highest train and cross-validation scores, 
-suggesting it is the best model for generalising unseen data. Therefore, we will be using SVM RBF for this project.
+```{python}
+#| label: tbl-model_selection_results
+#| tbl-cap: Results of model selection conducted using cross-validation
+
+model_selection_results = pd.read_csv("../results/tables/model_selection_results.csv").round(3)
+Markdown(model_selection_results.to_markdown(index=False))
+```
+
+The results of the model selection is shown in [@tbl-model_selection_results].
+According to the results, SVM RBF achieved high train and cross-validation scores of `{python} model_selection_results['Mean train score'][3]` and `{python} model_selection_results['Mean CV score'][3]` respectively, 
+suggesting it is the best model for generalising unseen data. 
+
+While the Decision Tree model yielded the best train and cross-validation scores, 
+the perfect train score suggests that the model has overfitted to the data.
+Therefore, we will be using SVM RBF for this project.
+
+### Model Optimisation
 
 Next, hyperparameter optimisation will be carried out with `RandomizedSearchCV` to obtain the best performing SVM RBF model for this project.
 The visualizations below allow us to gain a better understanding of how each hyperparameter affects the performance of the model.
 
 Figure 2: Heatmap of test scores obtained during hyperparameter optimisation.
 
-As the score report has indicated, our model is extremely well, achieving a test accuracy of 0.991. This means that our model is predicting well on unseen data.
+As the score report has indicated, our model has performed extremely well, achieving a test accuracy of 0.991. This means that our model is predicting well on unseen data.
 
 ## Results & Discussion
 
-After performing hyperparameter optimisation, the RBF SVM model with `C=100.0` and `gamma=0.1` achieved the best performance on the test set with a score of 0.99. This suggests the model has been generalised well, with high scores on both the train and test sets.
+After performing hyperparameter optimisation, the best SVM RBF model managed to achieve a score of 0.99 on the test set. This suggests the model has been generalised well, with high scores on both the train and test sets.
 
 To further improve the model's utility, several changes can be made. One such change is feeding the model with features that are not just categorical. Instead, for features such as buying price, maintenance cost and safety features, numeric data should be used. At the same time, more features can be included, such as the type of car and and fuel efficiency ratings.
 
