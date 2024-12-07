@@ -66,11 +66,11 @@ def main(train_data_from,
         )
 
         cv_results[model_name] = {
-            "model": model_name,
-            "mean_train_score": np.mean(scores['train_score']),
-            "std_train_score": np.std(scores['train_score']),
-            "mean_test_score": np.mean(scores['test_score']),
-            "std_test_score": np.std(scores['test_score'])
+            "Model": model_name,
+            "Mean train score": np.mean(scores['train_score']),
+            "SD train score": np.std(scores['train_score']),
+            "Mean CV score": np.mean(scores['test_score']),
+            "SD CV score": np.std(scores['test_score'])
         }
 
     cv_results_df = pd.DataFrame(cv_results).T
