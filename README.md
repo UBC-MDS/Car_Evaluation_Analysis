@@ -64,6 +64,11 @@ python scripts/split_n_preprocess.py \
     --preprocessor-to=results/models \
     --seed=123
 
+python scripts/evaluate_models.py \
+    --train-data-from data/processed/car_train.csv \
+    --preprocessor-from results/models/car_preprocessor.pickle \
+    --results-to results/tables \
+
 ...
 
 quarto render report/car_evaluation_analysis.qmd --to html
