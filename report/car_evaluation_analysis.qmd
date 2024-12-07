@@ -22,7 +22,6 @@ bibliography: references.bib
 import pandas as pd
 from IPython.display import Markdown, display
 from tabulate import tabulate
-import pickle
 ```
 
 ## Summary
@@ -86,12 +85,12 @@ The models evaluated are:
 #| label: tbl-model_selection_results
 #| tbl-cap: Results of model selection conducted using cross-validation
 
-model_selection_results = pd.read_csv("../results/tables/model_selection_results.csv")
+model_selection_results = pd.read_csv("../results/tables/model_selection_results.csv").round(3)
 Markdown(model_selection_results.to_markdown(index=False))
 ```
 
 The results of the model selection is shown in [@tbl-model_selection_results].
-According to the results, SVM RBF achieved high train and cross-validation scores of `{python} round(model_selection_results['Mean train score'][3], 3)` and `{python} round(model_selection_results['Mean CV score'][3], 3)` respectively, 
+According to the results, SVM RBF achieved high train and cross-validation scores of `{python} model_selection_results['Mean train score'][3]` and `{python} model_selection_results['Mean CV score'][3]` respectively, 
 suggesting it is the best model for generalising unseen data. 
 
 While the Decision Tree model yielded the best train and cross-validation scores, 
