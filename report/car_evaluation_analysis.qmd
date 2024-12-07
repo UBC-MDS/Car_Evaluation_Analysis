@@ -2,6 +2,7 @@
 title: "Predicing Level of Acceptability of Cars using Machine Learning"
 author: "Danish Karlin Isa, Nicholas Varabioff, Ximin Xu, Zuer Zhong"
 date: today
+jupyter: python3
 format: 
     html:
         toc: true
@@ -96,6 +97,8 @@ suggesting it is the best model for generalising unseen data.
 While the Decision Tree model yielded the best train and cross-validation scores, 
 the perfect train score suggests that the model has overfitted to the data.
 Therefore, we will be using SVM RBF for this project.
+
+### Model Optimisation
 
 Next, hyperparameter optimisation will be carried out with `RandomizedSearchCV` to obtain the best performing SVM RBF model for this project.
 The visualizations below allow us to gain a better understanding of how each hyperparameter affects the performance of the model.
