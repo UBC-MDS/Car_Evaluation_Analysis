@@ -52,9 +52,23 @@ The final report can be found [here](https://github.com/UBC-MDS/Car_Evaluation_A
 
     ![jupyter-container-web-app-launch-url](./img/jupyter-container-web-app-launch-url.png)
 
-4. In the Jupyter Lab window, navigate to `notebooks/Car_Evaluation_Analysis.ipynb`.
+4. To run the analysis, open a terminal and run the following commands
 
-5. Under the "Kernel" menu, click "Restart Kernel and Run All Cells."
+```bash
+python scripts/download_data.py \
+    --data-to=data/raw
+
+python scripts/split_n_preprocess.py \
+    --raw-data=data/raw/car_data_raw.csv \
+    --data-to=data/processed \
+    --preprocessor-to=results/models \
+    --seed=123
+
+...
+
+quarto render report/car_evaluation_analysis.qmd --to html
+quarto render report/car_evaluation_analysis.qmd --to pdf
+```
 
 ### Clean Up
 
