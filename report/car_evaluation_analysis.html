@@ -72,7 +72,6 @@ div.csl-indent {
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
   <ul class="collapse">
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
-  <li><a href="#data-import-and-validation" id="toc-data-import-and-validation" class="nav-link" data-scroll-target="#data-import-and-validation">Data Import and Validation</a></li>
   <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
   <li><a href="#preprocessing-of-dataset-for-machine-learning" id="toc-preprocessing-of-dataset-for-machine-learning" class="nav-link" data-scroll-target="#preprocessing-of-dataset-for-machine-learning">Preprocessing of Dataset for Machine Learning</a></li>
   <li><a href="#model-selection" id="toc-model-selection" class="nav-link" data-scroll-target="#model-selection">Model Selection</a></li>
@@ -140,13 +139,19 @@ div.csl-indent {
 <li>Safety rating: <code>low</code>, <code>med</code>, <code>high</code></li>
 </ul>
 </section>
-<section id="data-import-and-validation" class="level3">
-<h3 class="anchored" data-anchor-id="data-import-and-validation">Data Import and Validation</h3>
-</section>
 <section id="exploratory-data-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h3>
-<p>Exploratory data analysis was carried out on the train dataset. Here, the counts of records by target and category was visualised to gain a better idea of the dataset.</p>
-<p>Figure 1: Visualization of counts by feature and target class.</p>
+<p>Exploratory data analysis was carried out on the train dataset. From <a href="#fig-featurecounts" class="quarto-xref">Figure&nbsp;1</a>, we can see the counts of records by target and category was visualised to gain a better idea of the dataset.</p>
+<div id="fig-featurecounts" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-featurecounts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../results/figures/feature_counts_by_class.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-featurecounts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Distribution of Features by Class
+</figcaption>
+</figure>
+</div>
 <p>Through this analysis, we can see that examples with target class <code>unacceptable</code> represent a large proportion of the dataset.</p>
 </section>
 <section id="preprocessing-of-dataset-for-machine-learning" class="level3">
@@ -175,7 +180,7 @@ div.csl-indent {
 Table&nbsp;1: Results of model selection conducted using cross-validation
 </figcaption>
 <div aria-describedby="tbl-model_selection_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="27">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 23%">
@@ -249,14 +254,14 @@ Table&nbsp;1: Results of model selection conducted using cross-validation
 <section id="model-optimisation" class="level3">
 <h3 class="anchored" data-anchor-id="model-optimisation">Model Optimisation</h3>
 <p>With the best model identified, the next step was to improve its performance through hyperparameter optimization. Using RandomizedSearchCV, a range of values for the SVM’s hyperparameters C and gamma were explored. This approach allowed for an efficient and thorough search across the parameter space, and results in an optimal esitimator to use.</p>
-<p>The visualizations below, including a heatmap (<a href="#fig-heatmaptuning" class="quarto-xref">Figure&nbsp;1</a>) of test scores obtained during hyperparameter optimization. This interpretability aids in understanding which parameters are most critical and how sensitive the model is to these settings.</p>
+<p>The visualizations below, including a heatmap (<a href="#fig-heatmaptuning" class="quarto-xref">Figure&nbsp;2</a>) of test scores obtained during hyperparameter optimization. This interpretability aids in understanding which parameters are most critical and how sensitive the model is to these settings.</p>
 <div id="fig-heatmaptuning" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-heatmaptuning-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../results/figures/car_hyperparameter.png" class="img-fluid figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-heatmaptuning-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Heatmap of test scores obtained during hyperparameter optimisation
+Figure&nbsp;2: Heatmap of test scores obtained during hyperparameter optimisation
 </figcaption>
 </figure>
 </div>

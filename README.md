@@ -56,17 +56,17 @@ The final report can be found [here](https://github.com/UBC-MDS/Car_Evaluation_A
 
 ```bash
 python scripts/download_data.py \
-    --data-to=data/raw
+    --data-to data/raw
 
 python scripts/eda.py \
-    --processed-training-data=data/processed/car_train.csv \
-    --plot-to=results/figures \
+    --processed-training-data data/processed/car_train.csv \
+    --plot-to results/figures \
 
 python scripts/split_n_preprocess.py \
-    --raw-data=data/raw/car_data_raw.csv \
-    --data-to=data/processed \
-    --preprocessor-to=results/models \
-    --seed=123
+    --raw-data data/raw/car_data_raw.csv \
+    --data-to data/processed \
+    --preprocessor-to results/models \
+    --seed 123
 
 python scripts/evaluate_models.py \
     --train-data-from data/processed/car_train.csv \
@@ -85,7 +85,6 @@ python scripts/evaluate_car_predictor.py \
     --pipeline-from results/models/car_analysis.pickle \
     --results-to results/tables \
     --seed 123 
-...
 
 quarto render report/car_evaluation_analysis.qmd --to html
 quarto render report/car_evaluation_analysis.qmd --to pdf
