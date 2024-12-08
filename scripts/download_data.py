@@ -6,9 +6,6 @@
 # data located at https://archive.ics.uci.edu/dataset/19/car+evaluation
 # requirements: `pip install ucimlrepo`
 
-# usage: python scripts/download_data.py \
-#     --data-to data/raw
-
 import click
 import os
 import pandas as pd
