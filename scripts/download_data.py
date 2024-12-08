@@ -1,6 +1,6 @@
 # download_data.py
 # author: Nicholas Varabioff
-# data: 2024-02-12
+# date: 2024-12-02
 
 # import raw data
 # data located at https://archive.ics.uci.edu/dataset/19/car+evaluation
