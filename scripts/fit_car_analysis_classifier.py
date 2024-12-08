@@ -1,3 +1,7 @@
+# fit_car_analysis_classifier.py
+# author: Ximin Xu
+# date: 2024-12-02
+
 import click
 import os
 import numpy as np
@@ -12,11 +16,11 @@ import matplotlib.pyplot as plt
 
 @click.command()
 @click.option('--training-data', type=str, help="Path to training data")
-@click.option('--preprocessor', type=str, help="Path to preprocessor object")
-@click.option('--pipeline-to', type=str, help="Path to directory where the pipeline object will be written to")
+@click.option('--preprocessor', type=str, help="Path to preprocessor pickle")
+@click.option('--pipeline-to', type=str, help="Path to directory of preprocessor pickle")
 @click.option('--plot-to', type=str, help="Path to directory where the plot will be written to")
 @click.option('--seed', type=int, help="Random seed", default=123)
-#Derived from https://github.com/ttimbers/breast-cancer-predictor/blob/2.0.0/scripts/fit_breast_cancer_classifier.py 
+
 
 def main(training_data, preprocessor, pipeline_to, plot_to, seed):
     '''Fits the car analysis classifier on training data to find out the optimized hyperparameter and save the pipeline

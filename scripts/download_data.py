@@ -1,10 +1,13 @@
 # download_data.py
 # author: Nicholas Varabioff
-# data: 2024-02-12
+# date: 2024-12-02
 
 # import raw data
 # data located at https://archive.ics.uci.edu/dataset/19/car+evaluation
 # requirements: `pip install ucimlrepo`
+
+# usage: python scripts/download_data.py \
+#     --data-to data/raw
 
 import click
 import os

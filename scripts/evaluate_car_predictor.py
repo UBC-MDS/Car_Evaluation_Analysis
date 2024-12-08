@@ -1,3 +1,7 @@
+# evaluate_car_predictor.py
+# author: Ximin Xu
+# date: 2024-12-02
+
 import click
 import os
 import numpy as np
@@ -6,8 +10,8 @@ import pickle
 from sklearn import set_config
 
 @click.command()
-@click.option('--test-data', type=str, help="Path to scaled test data")
-@click.option('--pipeline-from', type=str, help="Path to directory where the fit pipeline object lives")
+@click.option('--test-data', type=str, help="Path to test data")
+@click.option('--pipeline-from', type=str, help="Path to the pipeline pickle")
 @click.option('--results-to', type=str, help="Path to directory where the plot will be written to")
 @click.option('--seed', type=int, help="Random seed", default=123)
 #Derived from https://github.com/ttimbers/breast-cancer-predictor/blob/2.0.0/scripts/fit_breast_cancer_classifier.py 

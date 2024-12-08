@@ -2,6 +2,10 @@
 # author: Zuer Zhong
 # date: 2024-12-03
 
+# usage: python scripts/eda.py \
+#     --processed-training-data data/processed/car_train.csv \
+#     --plot-to results/figures \
+
 import click
 import os
 import altair as alt
