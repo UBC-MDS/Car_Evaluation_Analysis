@@ -73,6 +73,7 @@ Each row in the dataset details a car’s attributes (each feature is of categor
 
 Exploratory data analysis was carried out on the train dataset. Here, the counts of records by target and category was visualised to gain a better idea of the dataset.
 
+![Distribution of Features by Class](../results/figures/feature_counts_by_class.png){#fig-featurecounts width=70%}
 Figure 1: Visualization of counts by feature and target class. 
 
 Through this analysis, we can see that examples with target class `unacceptable` represent a large proportion of the dataset.
