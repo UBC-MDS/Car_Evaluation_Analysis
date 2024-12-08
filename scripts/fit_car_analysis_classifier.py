@@ -34,8 +34,10 @@ def main(training_data, preprocessor, pipeline_to, plot_to, seed):
     svc = SVC()
     car_pipe = make_pipeline(car_preprocessor, svc)
     param_grid = {
-    "svc__gamma": 10.0 ** np.arange(-5, 5, 1),
-    "svc__C": 10.0 ** np.arange(-5, 5, 1)
+    "svc__gamma": [0.00001, 0.0001, 0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0, 10000.0]
+,
+    "svc__C": [0.00001, 0.0001, 0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0, 10000.0]
+
 }
     random_search = RandomizedSearchCV(
     car_pipe, param_distributions=param_grid, n_iter=100, n_jobs= -1, return_train_score=True
