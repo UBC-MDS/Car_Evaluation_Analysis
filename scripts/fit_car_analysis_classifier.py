@@ -48,8 +48,17 @@ def main(training_data, preprocessor, pipeline_to, plot_to, seed):
     plt.ylabel('Gamma')
     plt.imshow(pivot_table, cmap='viridis', interpolation='nearest', aspect='auto')
     plt.colorbar(label='Mean Test Score')
-    plt.xticks(np.arange(len(pivot_table.columns)), pivot_table.columns)
-    plt.yticks(np.arange(len(pivot_table.index)), pivot_table.index)
+    c_values = pivot_table.columns.astype(float)
+    gamma_values = pivot_table.index.astype(float)
+    plt.xticks(
+    ticks=np.arange(len(c_values)), 
+    labels=[f"$10^{{{int(np.log10(c))}}}$" for c in c_values],
+    rotation=45, ha='right'
+    )
+    plt.yticks(
+    ticks=np.arange(len(gamma_values)), 
+    labels=[f"$10^{{{int(np.log10(g))}}}$" for g in gamma_values]
+    )
     plt.savefig(os.path.join(plot_to, "car_hyperparameter.png"))
 
 if __name__ == '__main__':

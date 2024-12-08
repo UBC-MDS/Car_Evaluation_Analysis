@@ -69,6 +69,18 @@ python scripts/evaluate_models.py \
     --preprocessor-from results/models/car_preprocessor.pickle \
     --results-to results/tables \
 
+python scripts/fit_car_analysis_classifier.py \
+    --training-data data/processed/car_train.csv \
+    --preprocessor results/models/car_preprocessor.pickle \
+    --pipeline-to results/models \
+    --plot-to results/figures \
+    --seed 123 
+
+python scripts/evaluate_car_predictor.py \
+    --test-data data/processed/car_test.csv \
+    --pipeline-from results/models/car_analysis.pickle \
+    --results-to results/tables \
+    --seed 123 
 ...
 
 quarto render report/car_evaluation_analysis.qmd --to html
