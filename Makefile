@@ -5,10 +5,12 @@ all: data/raw/car_data_raw.csv \
 	data/processed/car_test.csv \
 	data/processed/encoded_car_train.csv \
 	data/processed/encoded_car_test.csv \
-	results/models/car_preprocessor.pickle \
 	results/models/car_analysis.pickle \
 	results/figures/car_hyperparameter.png \
 	results/tables/test_scores.csv
+	results/models/car_preprocessor.pickle\
+	results/figures/feature_counts_by_class.png
+
 
 data/raw/car_data_raw.csv: scripts/download_data.py
 	python scripts/download_data.py \
@@ -20,6 +22,10 @@ data/processed/car_train.csv data/processed/car_test.csv data/processed/encoded_
 		--data-to data/processed \
 		--preprocessor-to results/models \
 		--seed 123
+results/figures/feature_counts_by_class.png: scripts/eda.py data/processed/car_train.csv
+	python scripts/eda.py \
+		--processed-training-data=data/processed/car_train.csv \
+		--plot-to=results/figures
 
 results/models/car_analysis.pickle results/figures/car_hyperparameter.png: scripts/fit_car_analysis_classifier.py data/processed/car_train.csv results/models/car_preprocessor.pickle
 	python scripts/fit_car_analysis_classifier.py \
@@ -41,8 +47,11 @@ clean:
 	rm -f data/processed/car_train.csv \
 		data/processed/car_test.csv \
 		data/processed/encoded_car_train.csv \
-		data/processed/encoded_car_test.csv
+		data/processed/encoded_car_test.csv \
 	rm -f results/models/car_preprocessor.pickle \
-		results/models/car_analysis.pickle
+	results/models/car_analysis.pickle\
+	results/models/car_preprocessor.pickle \
 	rm -f results/figures/car_hyperparameter.png
+	results/figures/feature_counts_by_class.png\
 	rm -f results/tables/test_scores.csv
+
