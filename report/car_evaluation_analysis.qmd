@@ -30,7 +30,7 @@ import pandera as pa
 ```
 ```{python}
 test_scores_df = pd.read_csv("../results/tables/test_scores.csv").round(2)
-classification_report = pd.read_csv("../results/tables/classification_report.csv")
+classification_report = pd.read_csv("../results/tables/classification_report.csv").round(3)
 with open('../results/models/car_analysis.pickle', 'rb') as f:
     car_eva = pickle.load(f)
 ```
@@ -123,7 +123,7 @@ The code used to perform the analysis and create this report can be found here: 
 
 ## Results & Discussion
 
-After performing hyperparameter optimisation, the SVM RBF model manage to achieve the best score of `{python} test_scores_df['accuracy'].values[0]` on the test.
+After performing hyperparameter optimisation, the SVM RBF model manage to achieve the best score of `{python} test_scores_df['f1_score'].values[0]` on the test.
 This suggests the model has been generalised well, with high scores on both the train and test sets.
 
 To further improve the model's utility, several changes can be made.
