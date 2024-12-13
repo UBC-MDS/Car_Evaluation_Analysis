@@ -1,6 +1,6 @@
 # load_data.py
 # author: Ximin Xu
-# date: 2024-12-02
+# date: 2024-12-13
 
 import pandas as pd
 import os
@@ -14,9 +14,13 @@ def load_data(file_path):
 
     Returns:
         pd.DataFrame: The loaded data as a pandas DataFrame.
+        
+    Raises:
+        ValueError: If the input data is not valid.
     """
     if not os.path.isfile(file_path):
         raise ValueError('The file provided does not exist.')
+    
     if not file_path.endswith('.csv'):
         raise ValueError('The file provided is not a CSV file.')
     try:

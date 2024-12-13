@@ -16,9 +16,13 @@ def save_pickle(obj, directory, filename="object.pickle"):
 
     Returns:
         None
+        
+    Raises:
+        ValueError: If the output pickle is not valid.
+        FileNotFoundError: If the directory does not exist.
     """
     if not os.path.isdir(directory):
-        raise ValueError('The directory provided does not exist.')
+        raise FileNotFoundError(f"The directory '{directory}' does not exist.")
     try:
         with open(os.path.join(directory, filename), "wb") as file:
             pickle.dump(obj, file)
