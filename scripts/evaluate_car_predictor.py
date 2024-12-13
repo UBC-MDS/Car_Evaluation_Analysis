@@ -8,6 +8,11 @@ import numpy as np
 import pandas as pd
 import pickle
 from sklearn import set_config
+import sys
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from src.load_data import load_data
+from src.load_pickle import load_pickle
+from src.save_table import save_table
 
 @click.command()
 @click.option('--test-data', type=str, help="Path to test data")
@@ -21,15 +26,14 @@ def main(test_data, pipeline_from, results_to, seed):
     and saves the evaluation results.'''
     np.random.seed(seed)
     set_config(transform_output="pandas")
-    car_test = pd.read_csv(test_data)
-    with open(pipeline_from, 'rb') as f:
-        car_fit = pickle.load(f)
+    car_test = load_data(test_data)
+    car_fit = load_pickle(pipeline_from)
     accuracy = car_fit.score(
         car_test.drop(columns=["class"]),
         car_test["class"]
     )
     test_scores = pd.DataFrame({'accuracy': [accuracy]})
-    test_scores.to_csv(os.path.join(results_to, "test_scores.csv"), index=False)
+    save_table(test_scores, results_to, "test_scores.csv")
     
 if __name__ == '__main__':
     main()
