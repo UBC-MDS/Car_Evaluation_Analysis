@@ -15,9 +15,12 @@ def save_plot(figure, directory, filename="plot.png"):
 
     Returns:
         None
+        
+    Raises:
+        FileNotFoundError: If the directory does not exist.
     """
     if not os.path.isdir(directory):
-        raise ValueError('The directory provided does not exist.')
+        raise FileNotFoundError(f"The directory '{directory}' does not exist.")
     try:
         figure.savefig(os.path.join(directory, filename))
     except Exception as e:
