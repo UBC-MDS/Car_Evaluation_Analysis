@@ -33,6 +33,8 @@ test_scores_df = pd.read_csv("../results/tables/test_scores.csv").round(2)
 classification_report = pd.read_csv("../results/tables/classification_report.csv").round(3)
 with open('../results/models/car_analysis.pickle', 'rb') as f:
     car_eva = pickle.load(f)
+
+print()
 ```
 
 ## Summary
@@ -96,7 +98,6 @@ The models evaluated are:
 #| label: tbl-model_selection_results
 #| tbl-cap: Results of model selection conducted using cross-validation
 
-test_scores_df
 model_selection_results = pd.read_csv("../results/tables/model_selection_results.csv").round(3)
 Markdown(model_selection_results.to_markdown(index=False))
 ```
@@ -111,7 +112,7 @@ Therefore, we will be using SVM RBF for this project.
 
 ### Model Optimisation
 
-With the best model identified, the next step was to improve its performance through hyperparameter optimization. Using RandomizedSearchCV, a range of values for the SVM’s hyperparameters C and gamma were explored. This approach allowed for an efficient and thorough search across the parameter space, and results in an optimal esitimator to use.
+With the best model identified, the next step was to improve its performance through hyperparameter optimization. Using RandomizedSearchCV, a range of values for the SVM’s hyperparameters C and gamma were explored. This approach allowed for an efficient and thorough search across the parameter space, and results in an optimal esitimator to use. We use f1 weighted score to tune because of a multiclass dataset. 
 
 The visualizations below, including a heatmap (@fig-heatmaptuning) of test scores obtained during hyperparameter optimization. This interpretability aids in understanding which parameters are most critical and how sensitive the model is to these settings.
 
@@ -125,12 +126,15 @@ The code used to perform the analysis and create this report can be found here: 
 ## Results & Discussion
 
 After performing hyperparameter optimisation, the SVM RBF model manage to achieve the best f1 score of `{python} test_scores_df['f1_score'].values[0]` on the test.
-This suggests the model has been generalised well, with high scores on both the train and test sets.
-with a balanced performance across precision, recall, and F1-scores for each class. The weighted average metrics further confirm the robustness of the model. The weighted average F1-score `{python} test_scores_df['f1_score'].values[6]` reflects balanced performance even with class imbalance. However, slightly lower recall for class good (`{python} test_scores_df['recall'].values[1]`) suggests some misclassification, which could be improved with better feature engineering, or can be improved by increasing the data points.
+This suggests the model has been generalised well, with high scores on both the train and test sets. Let's have a look at the classification report[@tbl-classification-report]. It has a balanced performance across precision, recall, and F1-scores for each class. The weighted average metrics further confirm the robustness of the model. The weighted average F1-score `{python} classification_report['f1-score'].iloc[6]` reflects balanced performance even with class imbalance. However, slightly lower recall for class good (`{python} classification_report['recall'].iloc[1]`) suggests some misclassification, which could be improved with better feature engineering, or can be improved by increasing the data points.
+
 ```{python}
+
 #| label: tbl-classification-report
 #| tbl-cap: Classification report of the model
+
 Markdown(classification_report.to_markdown(index=False))
+
 ```
 
 Below is a confusion matrix from cross validation(@fig-confusionmatrix), we can visualize how model performs specifically on each classes. 
