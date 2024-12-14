@@ -1,4 +1,4 @@
-.PHONY: all clean fit evaluate render
+.PHONY: all clean
 
 
 all: data/raw/car_data_raw.csv \
