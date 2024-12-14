@@ -141,7 +141,7 @@ The code used to perform the analysis and create this report can be found here: 
 ## Results & Discussion
 
 After performing hyperparameter optimisation, the SVM RBF model manage to achieve the best f1 score of `{python} test_scores_df['f1_score'].values[0]` on the test.
-This suggests the model has been generalised well, with high scores on both the train and test sets. Let's have a look at the classification report[@tbl-classification-report]. It has a balanced performance across precision, recall, and F1-scores for each class. The weighted average metrics further confirm the robustness of the model. The weighted average F1-score `{python} classification_report['f1-score'].iloc[6]` reflects balanced performance even with class imbalance. However, slightly lower recall for class good (`{python} classification_report['recall'].iloc[1]`) suggests some misclassification, which could be improved with better feature engineering, or can be improved by increasing the data points.
+This suggests the model has been generalised well, with high scores on both the train and test sets. Let's have a look at the classification report [@tbl-classification-report]. It has a balanced performance across precision, recall, and F1-scores for each class. The weighted average metrics further confirm the robustness of the model. The weighted average F1-score `{python} classification_report['f1-score'].iloc[6]` reflects balanced performance even with class imbalance. However, slightly lower recall for class good (`{python} classification_report['recall'].iloc[1]`) suggests some misclassification, which could be improved with better feature engineering, or can be improved by increasing the data points.
 
 ```{python}
 
@@ -153,7 +153,9 @@ Markdown(classification_report.to_markdown(index=False))
 ```
 
 Below is a confusion matrix from cross validation(@fig-confusionmatrix), we can visualize how model performs specifically on each classes. 
+
 ![Confusion matrix from cross validation](../results/figures/confusion_matrix.png){#fig-confusionmatrix width=70%}
+
 
 To further improve the model's utility, several changes can be made.
 One such change is feeding the model with features that are not just categorical.
