@@ -1,3 +1,7 @@
+# test_tidy_cv_results.py
+# author: Danish Karlin Isa
+# date: 2024-12-13
+
 import numpy as np
 
 def tidy_cv_result(model_name, scores):

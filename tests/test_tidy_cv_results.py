@@ -1,3 +1,7 @@
+# test_tidy_cv_results.py
+# author: Danish Karlin Isa
+# date: 2024-12-13
+
 import pytest
 import numpy as np
 from src.tidy_cv_results import tidy_cv_result
@@ -48,4 +52,3 @@ def test_tidy_cv_result_empty_scores():
     }
     with pytest.raises(ValueError):
         tidy_cv_result(model_name, scores_empty)
-        
