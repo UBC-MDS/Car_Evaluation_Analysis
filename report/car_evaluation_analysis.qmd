@@ -1,5 +1,5 @@
 ---
-title: "Predicing Level of Acceptability of Cars using Machine Learning"
+title: "Predicting Level of Acceptability of Cars using Machine Learning"
 author: "Danish Karlin Isa, Nicholas Varabioff, Ximin Xu & Zuer Zhong"
 date: today
 jupyter: python3
@@ -39,7 +39,7 @@ print()
 
 ## Summary
 
-In this project, we attempt to predict the level of acceptability of cars by building a machine learning model in Python [@Python]. 
+In this project, we attempt to predict the level of acceptability of cars by building a machine learning model in Python [@Python]. The acceptability levels include four class labels: `unacc` (unacceptable), `acc` (acceptable), `good`, and `vgood` (very good).
 We use a data created by the efforts of M. Bohanec in the late 1980s. It is sourced from the UCI Machine Learning Repository and is publicly available for research. Every features and target in this dataset are all encoded by one-hot encoder for data analysis.
 To choose the best model for this task, we utilised several common machine learning models, 
 and found out that the SVM RBF classifier achieved the best train and cross-validation scores, with a test accuracy of 0.952. 
@@ -65,10 +65,25 @@ Each row in the dataset details a car’s attributes (each feature is of categor
 -   Boot size: `small`, `med`, `big`
 -   Safety rating: `low`, `med`, `high`
 
+Each row in the dataset details a car’s attributes (features) and its **acceptability** (target variable). The target variable is categorized into four class labels:
+- `unacc`: Unacceptable. Cars that fail to meet basic criteria.
+- `acc`: Acceptable. Cars that meet minimum requirements.
+- `good`: Good. Cars that exceed average standards in some aspects.
+- `vgood`: Very good. Cars that meet the highest standards.
+
 
 ### Exploratory Data Analysis
 
-Exploratory data analysis was carried out on the train dataset. From @fig-featurecounts, we can see the counts of records by target and category was visualised to gain a better idea of the dataset.
+Exploratory data analysis was carried out on the train dataset.
+
+To assess the balance of target classes in the dataset, the distribution of the target variable was visualized (see @fig-targetdist). We can see the dataset has a significant class imbalance which is the `unacceptable` class. This imbalance can affect model performance:
+- Models may overpredict the `unacceptable` class and fail to identify minority classes (`good`, `vgood`).
+- It could be high simply by predicting the majority class, so accuracy may be misleading. We can consider metrics like Precision, Recall, and F1-score.
+This imbalance may require further handling. For example, oversampling, undersampling, or class-weighted loss functions during training.
+
+![Distribution of Target Variable](../results/figures/target_distribution_raw.png){#fig-targetdist width=50%}
+
+ From @fig-featurecounts, we can see the counts of records by target and category was visualised to gain a better idea of the dataset.
 
 ![Distribution of Features by Class](../results/figures/feature_counts_by_class.png){#fig-featurecounts width=70%}
 

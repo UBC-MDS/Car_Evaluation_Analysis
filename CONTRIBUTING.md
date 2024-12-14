@@ -45,4 +45,4 @@ Participation in this project implies agreement to abide by the [Code of Conduct
 
 ## Attribution
 
-TThese contributing guidelines were inspired by the [Breast_Cancer_Predictor_Project](https://github.com/ttimbers/breast_cancer_predictor).
+These contributing guidelines were inspired by the [Breast_Cancer_Predictor_Project](https://github.com/ttimbers/breast_cancer_predictor).

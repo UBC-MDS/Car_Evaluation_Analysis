@@ -1,18 +1,17 @@
-.PHONY: all clean
-
 all: data/raw/car_data_raw.csv \
     data/processed/car_train.csv \
     data/processed/car_test.csv \
     data/processed/encoded_car_train.csv \
     data/processed/encoded_car_test.csv \
-    results/models/car_analysis.pickle \
-	results/figures/feature_counts_by_class.png \
-	results/tables/model_selection_results.csv \
+    results/models/car_preprocessor.pickle \
+    results/figures/target_distribution_raw.png \
+    results/figures/feature_counts_by_class.png \
+    results/tables/model_selection_results.csv \
     results/figures/car_hyperparameter.png \
     results/tables/test_scores.csv \
     results/tables/classification_report.csv \
     results/figures/confusion_matrix.png \
-    results/models/car_preprocessor.pickle \
+    results/models/car_analysis.pickle \
     report/car_evaluation_analysis.html \
     report/car_evaluation_analysis.pdf
 
@@ -30,8 +29,9 @@ data/processed/car_train.csv data/processed/car_test.csv data/processed/encoded_
 		--seed 123
 
 # Generate EDA plots
-results/figures/feature_counts_by_class.png: scripts/eda.py data/processed/car_train.csv
+results/figures/target_distribution_raw.png results/figures/feature_counts_by_class.png: scripts/eda.py data/raw/car_data_raw.csv data/processed/car_train.csv
 	python scripts/eda.py \
+		--raw-data=data/raw/car_data_raw.csv \
 		--processed-training-data=data/processed/car_train.csv \
 		--plot-to=results/figures
 
@@ -78,6 +78,7 @@ clean:
 	rm -f results/models/car_preprocessor.pickle \
 		results/models/car_analysis.pickle
 	rm -f results/figures/car_hyperparameter.png \
+		results/figures/target_distribution_raw.png \
 		results/figures/feature_counts_by_class.png
 	rm -f results/tables/model_selection_results.csv \
 		results/figures/confusion_matrix.png

@@ -59,6 +59,7 @@ python scripts/download_data.py \
     --data-to data/raw
 
 python scripts/eda.py \
+    --raw-data data/raw/car_data_raw.csv
     --processed-training-data data/processed/car_train.csv \
     --plot-to results/figures \
 
