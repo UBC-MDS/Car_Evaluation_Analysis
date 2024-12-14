@@ -1,4 +1,4 @@
-# test_tidy_cv_results.py
+# tidy_cv_results.py
 # author: Danish Karlin Isa
 # date: 2024-12-13
 
