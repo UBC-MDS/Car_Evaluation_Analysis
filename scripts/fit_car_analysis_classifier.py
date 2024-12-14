@@ -16,6 +16,7 @@ from src.save_pickle import save_pickle
 from src.load_data import load_data
 from src.load_pickle import load_pickle
 from src.save_plot import save_plot
+from sklearn.metrics import f1_score, make_scorer
 import matplotlib.pyplot as plt
 
 @click.command()
@@ -39,9 +40,9 @@ def main(training_data, preprocessor, pipeline_to, plot_to, seed):
         "svc__gamma": [0.00001, 0.0001, 0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0, 10000.0],
         "svc__C": [0.00001, 0.0001, 0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0, 10000.0]
     }
-
+    f1_weighted_scorer = make_scorer(f1_score, average='weighted')
     random_search = RandomizedSearchCV(
-        car_pipe, param_distributions=param_grid, n_iter=100, n_jobs=-1, scoring = 'f1', return_train_score=True
+        car_pipe, param_distributions=param_grid, n_iter=100, n_jobs=-1, scoring = f1_weighted_scorer, return_train_score=True
     )
     random_search.fit(car_train.drop(columns=['class']), car_train['class'])
 
