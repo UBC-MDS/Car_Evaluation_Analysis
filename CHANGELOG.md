@@ -2,6 +2,8 @@
 
 ## Documentation & Grammar
 
+- [Fix typos in documentation](https://github.com/UBC-MDS/Car_Evaluation_Analysis/pull/107/commits/e347c3262dd53265ba01e59785f68b6f41e0d666)
+
 - [Enhance script names and docstrings to be more descriptive and less generic.](https://github.com/UBC-MDS/Car_Evaluation_Analysis/commit/fc2edaa6c2e03f65b727c38436bbbd3c0507425e)
 
 ## Methodology & Analysis
