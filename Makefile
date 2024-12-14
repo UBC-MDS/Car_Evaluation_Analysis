@@ -8,6 +8,7 @@ all: data/raw/car_data_raw.csv \
     data/processed/encoded_car_test.csv \
     results/models/car_analysis.pickle \
 	results/figures/feature_counts_by_class.png \
+	results/tables/model_selection_results.csv \
     results/figures/car_hyperparameter.png \
     results/tables/test_scores.csv \
     results/models/car_preprocessor.pickle \
@@ -32,6 +33,13 @@ results/figures/feature_counts_by_class.png: scripts/eda.py data/processed/car_t
 	python scripts/eda.py \
 		--processed-training-data=data/processed/car_train.csv \
 		--plot-to=results/figures
+
+# Select ML models
+results/tables/model_selection_results.csv: scripts/select_ml_model.py data/processed/car_train.csv results/models/car_preprocessor.pickle
+	python scripts/select_ml_model.py \
+		--train-data-from data/processed/car_train.csv \
+		--preprocessor-from results/models/car_preprocessor.pickle \
+		--results-to results/tables
 
 # Fit the model and generate hyperparameter tuning results
 results/models/car_analysis.pickle results/figures/car_hyperparameter.png: scripts/fit_car_analysis_classifier.py data/processed/car_train.csv results/models/car_preprocessor.pickle
@@ -68,6 +76,7 @@ clean:
 		results/models/car_analysis.pickle
 	rm -f results/figures/car_hyperparameter.png \
 		results/figures/feature_counts_by_class.png
+	rm -f results/tables/model_selection_results.csv
 	rm -f results/tables/test_scores.csv
 	rm -f report/car_evaluation_analysis.html \
 		report/car_evaluation_analysis.pdf
