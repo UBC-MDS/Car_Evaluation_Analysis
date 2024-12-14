@@ -41,7 +41,7 @@ def main(training_data, preprocessor, pipeline_to, plot_to, seed):
     }
 
     random_search = RandomizedSearchCV(
-        car_pipe, param_distributions=param_grid, n_iter=100, n_jobs=-1, return_train_score=True
+        car_pipe, param_distributions=param_grid, n_iter=100, n_jobs=-1, scoring = 'f1', return_train_score=True
     )
     random_search.fit(car_train.drop(columns=['class']), car_train['class'])
 

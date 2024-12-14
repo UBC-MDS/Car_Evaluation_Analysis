@@ -1,16 +1,17 @@
 .PHONY: all clean
 
-
 all: data/raw/car_data_raw.csv \
     data/processed/car_train.csv \
     data/processed/car_test.csv \
     data/processed/encoded_car_train.csv \
     data/processed/encoded_car_test.csv \
     results/models/car_analysis.pickle \
-	results/figures/feature_counts_by_class.png \
-	results/tables/model_selection_results.csv \
+	  results/figures/feature_counts_by_class.png \
+	  results/tables/model_selection_results.csv \
     results/figures/car_hyperparameter.png \
     results/tables/test_scores.csv \
+    results/tables/classification_report.csv \
+    results/figures/confusion_matrix.png \
     results/models/car_preprocessor.pickle \
     report/car_evaluation_analysis.html \
     report/car_evaluation_analysis.pdf
@@ -50,12 +51,14 @@ results/models/car_analysis.pickle results/figures/car_hyperparameter.png: scrip
 		--plot-to results/figures \
 		--seed 123
 
-# Evaluate the model and save test scores
-results/tables/test_scores.csv: scripts/evaluate_car_predictor.py data/processed/car_test.csv results/models/car_analysis.pickle
+# Evaluate the model, save test scores, and generate confusion matrix plot
+results/tables/test_scores.csv results/tables/classification_report.csv results/figures/confusion_matrix.png: scripts/evaluate_car_predictor.py data/processed/car_train.csv data/processed/car_test.csv results/models/car_analysis.pickle
 	python scripts/evaluate_car_predictor.py \
+		--train-data data/processed/car_train.csv \
 		--test-data data/processed/car_test.csv \
 		--pipeline-from results/models/car_analysis.pickle \
 		--results-to results/tables \
+		--plot-to results/figures \
 		--seed 123
 
 # Render the Quarto report
@@ -76,7 +79,9 @@ clean:
 		results/models/car_analysis.pickle
 	rm -f results/figures/car_hyperparameter.png \
 		results/figures/feature_counts_by_class.png
-	rm -f results/tables/model_selection_results.csv
-	rm -f results/tables/test_scores.csv
+	rm -f results/tables/model_selection_results.csv \
+		results/figures/confusion_matrix.png
+	rm -f results/tables/test_scores.csv \
+		results/tables/classification_report.csv
 	rm -f report/car_evaluation_analysis.html \
 		report/car_evaluation_analysis.pdf

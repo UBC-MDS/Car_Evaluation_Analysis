@@ -3,7 +3,7 @@ import pandas as pd
 
 def save_table(dataframe, directory_path, table_name):
     """
-    Saves a DataFrame as a CSV file named 'test_scores.csv' in the specified directory.
+    Saves a DataFrame as a CSV file named table_name in the specified directory.
 
     Parameters:
         dataframe (pd.DataFrame): The DataFrame to be saved.
