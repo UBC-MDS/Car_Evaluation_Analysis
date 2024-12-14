@@ -33,6 +33,7 @@ test_scores_df = pd.read_csv("../results/tables/test_scores.csv").round(2)
 classification_report = pd.read_csv("../results/tables/classification_report.csv").round(3)
 with open('../results/models/car_analysis.pickle', 'rb') as f:
     car_eva = pickle.load(f)
+model_selection_results = pd.read_csv("../results/tables/model_selection_results.csv").round(3)
 
 print()
 ```
@@ -42,7 +43,7 @@ print()
 In this project, we attempt to predict the level of acceptability of cars by building a machine learning model in Python [@Python]. 
 We use a data created by the efforts of M. Bohanec in the late 1980s. It is sourced from the UCI Machine Learning Repository and is publicly available for research. Every features and target in this dataset are all encoded by one-hot encoder for data analysis.
 To choose the best model for this task, we utilised several common machine learning models, 
-and found out that the SVM RBF classifier achieved the best train and cross-validation scores, with a test accuracy of 0.952. 
+and found out that the SVM RBF classifier achieved the best train and cross-validation scores, with a test accuracy of `{python} model_selection_results['Mean CV score'][3]`. 
 The SVM RBF model also showed exceptional ability in determining the acceptability of cars as seen in accuracy. Because we see that there is a class imbalance on the dateset, we calculate the F1 score to test if our model have good performance. With an f1 score of `{python} test_scores_df['f1_score'].values[0]` on test data, we justify that the model performs well on unseen data, even with a class imbalance. 
 This makes the SVM RBF model a solid choice for this project. By looking deep into the performance of model on difference classes, we see the model performs exceptionally well overall, with near-perfect scores across all metrics. However, class good has a slight recall issue, indicating some instances of this class are being missed. A confusion matrix with cross validation is brought to further visualize what is happening.
 
@@ -98,7 +99,6 @@ The models evaluated are:
 #| label: tbl-model_selection_results
 #| tbl-cap: Results of model selection conducted using cross-validation
 
-model_selection_results = pd.read_csv("../results/tables/model_selection_results.csv").round(3)
 Markdown(model_selection_results.to_markdown(index=False))
 ```
 
