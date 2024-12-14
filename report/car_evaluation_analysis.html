@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong">
-<meta name="dcterms.date" content="2024-12-13">
+<meta name="dcterms.date" content="2024-12-14">
 
-<title>Predicing Level of Acceptability of Cars using Machine Learning</title>
+<title>Predicting Level of Acceptability of Cars using Machine Learning</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -86,7 +86,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Predicing Level of Acceptability of Cars using Machine Learning</h1>
+<h1 class="title">Predicting Level of Acceptability of Cars using Machine Learning</h1>
 </div>
 
 
@@ -103,7 +103,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 13, 2024</p>
+      <p class="date">December 14, 2024</p>
     </div>
   </div>
   
@@ -115,14 +115,14 @@ div.csl-indent {
 </header>
 
 
-<div id="a850e6b2" class="cell" data-execution_count="2">
+<div id="d2fb7d79" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code></code></pre>
 </div>
 </div>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>In this project, we attempt to predict the level of acceptability of cars by building a machine learning model in Python <span class="citation" data-cites="Python">(<a href="#ref-Python" role="doc-biblioref">Van Rossum and Drake 2009</a>)</span>. We use a data created by the efforts of M. Bohanec in the late 1980s. It is sourced from the UCI Machine Learning Repository and is publicly available for research. Every features and target in this dataset are all encoded by one-hot encoder for data analysis. To choose the best model for this task, we utilised several common machine learning models, and found out that the SVM RBF classifier achieved the best train and cross-validation scores, with a test accuracy of 0.952. The SVM RBF model also showed exceptional ability in determining the acceptability of cars as seen in accuracy. Because we see that there is a class imbalance on the dateset, we calculate the F1 score to test if our model have good performance. With an f1 score of 0.99 on test data, we justify that the model performs well on unseen data, even with a class imbalance. This makes the SVM RBF model a solid choice for this project. By looking deep into the performance of model on difference classes, we see the model performs exceptionally well overall, with near-perfect scores across all metrics. However, class good has a slight recall issue, indicating some instances of this class are being missed. A confusion matrix with cross validation is brought to further visualize what is happening.</p>
+<p>In this project, we attempt to predict the level of acceptability of cars by building a machine learning model in Python <span class="citation" data-cites="Python">(<a href="#ref-Python" role="doc-biblioref">Van Rossum and Drake 2009</a>)</span>. The acceptability levels include four class labels: <code>unacc</code> (unacceptable), <code>acc</code> (acceptable), <code>good</code>, and <code>vgood</code> (very good). We use a data created by the efforts of M. Bohanec in the late 1980s. It is sourced from the UCI Machine Learning Repository and is publicly available for research. Every features and target in this dataset are all encoded by one-hot encoder for data analysis. To choose the best model for this task, we utilised several common machine learning models, and found out that the SVM RBF classifier achieved the best train and cross-validation scores, with a test accuracy of 0.952. The SVM RBF model also showed exceptional ability in determining the acceptability of cars as seen in accuracy. Because we see that there is a class imbalance on the dateset, we calculate the F1 score to test if our model have good performance. With an f1 score of 0.99 on test data, we justify that the model performs well on unseen data, even with a class imbalance. This makes the SVM RBF model a solid choice for this project. By looking deep into the performance of model on difference classes, we see the model performs exceptionally well overall, with near-perfect scores across all metrics. However, class good has a slight recall issue, indicating some instances of this class are being missed. A confusion matrix with cross validation is brought to further visualize what is happening.</p>
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
@@ -142,17 +142,30 @@ div.csl-indent {
 <li>Boot size: <code>small</code>, <code>med</code>, <code>big</code></li>
 <li>Safety rating: <code>low</code>, <code>med</code>, <code>high</code></li>
 </ul>
+<p>Each row in the dataset details a car’s attributes (features) and its <strong>acceptability</strong> (target variable). The target variable is categorized into four class labels: - <code>unacc</code>: Unacceptable. Cars that fail to meet basic criteria. - <code>acc</code>: Acceptable. Cars that meet minimum requirements. - <code>good</code>: Good. Cars that exceed average standards in some aspects. - <code>vgood</code>: Very good. Cars that meet the highest standards.</p>
 </section>
 <section id="exploratory-data-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h3>
-<p>Exploratory data analysis was carried out on the train dataset. From <a href="#fig-featurecounts" class="quarto-xref">Figure&nbsp;1</a>, we can see the counts of records by target and category was visualised to gain a better idea of the dataset.</p>
+<p>Exploratory data analysis was carried out on the train dataset.</p>
+<p>To assess the balance of target classes in the dataset, the distribution of the target variable was visualized (see <a href="#fig-targetdist" class="quarto-xref">Figure&nbsp;1</a>). We can see the dataset has a significant class imbalance which is the <code>unacceptable</code> class. This imbalance can affect model performance: - Models may overpredict the <code>unacceptable</code> class and fail to identify minority classes (<code>good</code>, <code>vgood</code>). - It could be high simply by predicting the majority class, so accuracy may be misleading. We can consider metrics like Precision, Recall, and F1-score. This imbalance may require further handling. For example, oversampling, undersampling, or class-weighted loss functions during training.</p>
+<div id="fig-targetdist" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-targetdist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../results/figures/target_distribution_raw.png" class="img-fluid figure-img" style="width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-targetdist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Distribution of Target Variable
+</figcaption>
+</figure>
+</div>
+<p>From <a href="#fig-featurecounts" class="quarto-xref">Figure&nbsp;2</a>, we can see the counts of records by target and category was visualised to gain a better idea of the dataset.</p>
 <div id="fig-featurecounts" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-featurecounts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../results/figures/feature_counts_by_class.png" class="img-fluid figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-featurecounts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Distribution of Features by Class
+Figure&nbsp;2: Distribution of Features by Class
 </figcaption>
 </figure>
 </div>
@@ -184,7 +197,7 @@ Figure&nbsp;1: Distribution of Features by Class
 Table&nbsp;1: Results of model selection conducted using cross-validation
 </figcaption>
 <div aria-describedby="tbl-model_selection_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="23">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 23%">
@@ -258,14 +271,14 @@ Table&nbsp;1: Results of model selection conducted using cross-validation
 <section id="model-optimisation" class="level3">
 <h3 class="anchored" data-anchor-id="model-optimisation">Model Optimisation</h3>
 <p>With the best model identified, the next step was to improve its performance through hyperparameter optimization. Using RandomizedSearchCV, a range of values for the SVM’s hyperparameters C and gamma were explored. This approach allowed for an efficient and thorough search across the parameter space, and results in an optimal esitimator to use. We use f1 weighted score to tune because of a multiclass dataset.</p>
-<p>The visualizations below, including a heatmap (<a href="#fig-heatmaptuning" class="quarto-xref">Figure&nbsp;2</a>) of test scores obtained during hyperparameter optimization. This interpretability aids in understanding which parameters are most critical and how sensitive the model is to these settings.</p>
+<p>The visualizations below, including a heatmap (<a href="#fig-heatmaptuning" class="quarto-xref">Figure&nbsp;3</a>) of test scores obtained during hyperparameter optimization. This interpretability aids in understanding which parameters are most critical and how sensitive the model is to these settings.</p>
 <div id="fig-heatmaptuning" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-heatmaptuning-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../results/figures/car_hyperparameter.png" class="img-fluid figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-heatmaptuning-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Heatmap of test scores obtained during hyperparameter optimisation
+Figure&nbsp;3: Heatmap of test scores obtained during hyperparameter optimisation
 </figcaption>
 </figure>
 </div>
@@ -274,7 +287,7 @@ Figure&nbsp;2: Heatmap of test scores obtained during hyperparameter optimisatio
 </section>
 <section id="results-discussion" class="level2">
 <h2 class="anchored" data-anchor-id="results-discussion">Results &amp; Discussion</h2>
-<p>After performing hyperparameter optimisation, the SVM RBF model manage to achieve the best f1 score of 0.99 on the test. This suggests the model has been generalised well, with high scores on both the train and test sets. Let’s have a look at the classification report<a href="#tbl-classification-report" class="quarto-xref">Table&nbsp;2</a>. It has a balanced performance across precision, recall, and F1-scores for each class. The weighted average metrics further confirm the robustness of the model. The weighted average F1-score 0.991 reflects balanced performance even with class imbalance. However, slightly lower recall for class good (0.857) suggests some misclassification, which could be improved with better feature engineering, or can be improved by increasing the data points.</p>
+<p>After performing hyperparameter optimisation, the SVM RBF model manage to achieve the best f1 score of 0.99 on the test. This suggests the model has been generalised well, with high scores on both the train and test sets. Let’s have a look at the classification report <a href="#tbl-classification-report" class="quarto-xref">Table&nbsp;2</a>. It has a balanced performance across precision, recall, and F1-scores for each class. The weighted average metrics further confirm the robustness of the model. The weighted average F1-score 0.991 reflects balanced performance even with class imbalance. However, slightly lower recall for class good (0.857) suggests some misclassification, which could be improved with better feature engineering, or can be improved by increasing the data points.</p>
 <div class="cell" data-execution_count="4">
 <div id="tbl-classification-report" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -282,7 +295,7 @@ Figure&nbsp;2: Heatmap of test scores obtained during hyperparameter optimisatio
 Table&nbsp;2: Classification report of the model
 </figcaption>
 <div aria-describedby="tbl-classification-report-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="24">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
@@ -350,7 +363,17 @@ Table&nbsp;2: Classification report of the model
 </figure>
 </div>
 </div>
-<p>Below is a confusion matrix from cross validation(<strong>?@fig-confusionmatrix</strong>), we can visualize how model performs specifically on each classes. <img src="../results/figures/confusion_matrix.png" id="fig-confusionmatrix" class="img-fluid" style="width:70.0%" alt="Confusion matrix from cross validation"></p>
+<p>Below is a confusion matrix from cross validation(<a href="#fig-confusionmatrix" class="quarto-xref">Figure&nbsp;4</a>), we can visualize how model performs specifically on each classes.</p>
+<div id="fig-confusionmatrix" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-confusionmatrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../results/figures/confusion_matrix.png" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-confusionmatrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Confusion matrix from cross validation
+</figcaption>
+</figure>
+</div>
 <p>To further improve the model’s utility, several changes can be made. One such change is feeding the model with features that are not just categorical. Instead, for features such as buying price, maintenance cost and safety features, numeric data should be collected. At the same time, more features can be included, such as the type of car and and fuel efficiency ratings.</p>
 <p>By allowing the model to take in more complex data, this may allow the model to make more accurate predictions to let customers make a more informed choice when purchasing a new car.</p>
 </section>

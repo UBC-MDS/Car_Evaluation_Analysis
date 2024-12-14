@@ -1,3 +1,6 @@
+.PHONY: all clean
+
+
 all: data/raw/car_data_raw.csv \
     data/processed/car_train.csv \
     data/processed/car_test.csv \
