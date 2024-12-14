@@ -1,5 +1,5 @@
 ---
-title: "Predicing Level of Acceptability of Cars using Machine Learning"
+title: "Predicting Level of Acceptability of Cars using Machine Learning"
 author: "Danish Karlin Isa, Nicholas Varabioff, Ximin Xu & Zuer Zhong"
 date: today
 jupyter: python3
