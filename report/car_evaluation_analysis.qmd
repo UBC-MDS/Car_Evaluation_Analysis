@@ -68,7 +68,13 @@ Each row in the dataset details a car’s attributes (each feature is of categor
 
 ### Exploratory Data Analysis
 
-Exploratory data analysis was carried out on the train dataset. From @fig-featurecounts, we can see the counts of records by target and category was visualised to gain a better idea of the dataset.
+Exploratory data analysis was carried out on the train dataset.
+
+To assess the balance of target classes in the dataset, the distribution of the target variable was visualized (see @fig-targetdist). We can see the dataset has a significant class imbalance which is the `unacceptable` class. This imbalance could impact the performance of classification models and may require further handling. For example, oversampling, undersampling, or class-weighted loss functions during training.
+
+![Distribution of Target Variable](../results/figures/target_distribution_raw.png){#fig-targetdist width=50%}
+
+ From @fig-featurecounts, we can see the counts of records by target and category was visualised to gain a better idea of the dataset.
 
 ![Distribution of Features by Class](../results/figures/feature_counts_by_class.png){#fig-featurecounts width=70%}
 

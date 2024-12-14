@@ -1,18 +1,16 @@
-.PHONY: all clean
-
 all: data/raw/car_data_raw.csv \
     data/processed/car_train.csv \
     data/processed/car_test.csv \
     data/processed/encoded_car_train.csv \
     data/processed/encoded_car_test.csv \
-    results/models/car_analysis.pickle \
-	results/figures/feature_counts_by_class.png \
-	results/tables/model_selection_results.csv \
+    results/models/car_preprocessor.pickle \
+    results/figures/feature_counts_by_class.png \
+    results/tables/model_selection_results.csv \
     results/figures/car_hyperparameter.png \
     results/tables/test_scores.csv \
     results/tables/classification_report.csv \
     results/figures/confusion_matrix.png \
-    results/models/car_preprocessor.pickle \
+    results/models/car_analysis.pickle \
     report/car_evaluation_analysis.html \
     report/car_evaluation_analysis.pdf
 
