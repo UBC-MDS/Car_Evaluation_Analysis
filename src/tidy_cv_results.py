@@ -38,10 +38,7 @@ def tidy_cv_result(model_name, scores):
     if not all(key in scores for key in ['train_score', 'test_score']):
         raise ValueError('The dictionary must contain `train_score` and `test_score` keys.')
     
-    if not scores['train_score']:
-        raise ValueError('`scores` do not contain expected values')
-    
-    if not scores['test_score']:
+    if len(scores['train_score']) == 0 or len(scores['test_score']) == 0:
         raise ValueError('`scores` do not contain expected values')
     
     result = {
