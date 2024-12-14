@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong">
-<meta name="dcterms.date" content="2024-12-09">
+<meta name="dcterms.date" content="2024-12-13">
 
 <title>Predicing Level of Acceptability of Cars using Machine Learning</title>
 <style>
@@ -51,10 +51,10 @@ div.csl-indent {
 <script src="car_evaluation_analysis_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="car_evaluation_analysis_files/libs/quarto-html/anchor.min.js"></script>
 <link href="car_evaluation_analysis_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="car_evaluation_analysis_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="car_evaluation_analysis_files/libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="car_evaluation_analysis_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="car_evaluation_analysis_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="car_evaluation_analysis_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="car_evaluation_analysis_files/libs/bootstrap/bootstrap-973236bd072d72a04ee9cd82dcc9cb29.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -80,7 +80,7 @@ div.csl-indent {
   <li><a href="#results-discussion" id="toc-results-discussion" class="nav-link" data-scroll-target="#results-discussion">Results &amp; Discussion</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
-<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="../car_evaluation_analysis.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="car_evaluation_analysis.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
 <main class="content" id="quarto-document-content">
 
@@ -103,7 +103,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 9, 2024</p>
+      <p class="date">December 13, 2024</p>
     </div>
   </div>
   
@@ -115,9 +115,14 @@ div.csl-indent {
 </header>
 
 
+<div id="a850e6b2" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-stdout">
+<pre><code></code></pre>
+</div>
+</div>
 <section id="summary" class="level2">
 <h2 class="anchored" data-anchor-id="summary">Summary</h2>
-<p>In this project, we attempt to predict the level of acceptability of cars by building a machine learning model in Python <span class="citation" data-cites="Python">(<a href="#ref-Python" role="doc-biblioref">Van Rossum and Drake 2009</a>)</span>. We use a data created by the efforts of M. Bohanec in the late 1980s. It is sourced from the UCI Machine Learning Repository and is publicly available for research. Every features and target in this dataset are all encoded by one-hot encoder for data analysis. To choose the best model for this task, we utilised several common machine learning models, and found out that the SVM RBF classifier achieved the best train and cross-validation scores, with a test accuracy of 0.952. The SVM RBF model also showed exceptional ability in determining the acceptability of cars as seen in accuracy. With an accuracy of 0.99 on test data. This makes the SVM RBF model a solid choice for this project.</p>
+<p>In this project, we attempt to predict the level of acceptability of cars by building a machine learning model in Python <span class="citation" data-cites="Python">(<a href="#ref-Python" role="doc-biblioref">Van Rossum and Drake 2009</a>)</span>. We use a data created by the efforts of M. Bohanec in the late 1980s. It is sourced from the UCI Machine Learning Repository and is publicly available for research. Every features and target in this dataset are all encoded by one-hot encoder for data analysis. To choose the best model for this task, we utilised several common machine learning models, and found out that the SVM RBF classifier achieved the best train and cross-validation scores, with a test accuracy of 0.952. The SVM RBF model also showed exceptional ability in determining the acceptability of cars as seen in accuracy. Because we see that there is a class imbalance on the dateset, we calculate the F1 score to test if our model have good performance. With an f1 score of 0.99 on test data, we justify that the model performs well on unseen data, even with a class imbalance. This makes the SVM RBF model a solid choice for this project. By looking deep into the performance of model on difference classes, we see the model performs exceptionally well overall, with near-perfect scores across all metrics. However, class good has a slight recall issue, indicating some instances of this class are being missed. A confusion matrix with cross validation is brought to further visualize what is happening.</p>
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
@@ -252,7 +257,7 @@ Table&nbsp;1: Results of model selection conducted using cross-validation
 </section>
 <section id="model-optimisation" class="level3">
 <h3 class="anchored" data-anchor-id="model-optimisation">Model Optimisation</h3>
-<p>With the best model identified, the next step was to improve its performance through hyperparameter optimization. Using RandomizedSearchCV, a range of values for the SVM’s hyperparameters C and gamma were explored. This approach allowed for an efficient and thorough search across the parameter space, and results in an optimal esitimator to use.</p>
+<p>With the best model identified, the next step was to improve its performance through hyperparameter optimization. Using RandomizedSearchCV, a range of values for the SVM’s hyperparameters C and gamma were explored. This approach allowed for an efficient and thorough search across the parameter space, and results in an optimal esitimator to use. We use f1 weighted score to tune because of a multiclass dataset.</p>
 <p>The visualizations below, including a heatmap (<a href="#fig-heatmaptuning" class="quarto-xref">Figure&nbsp;2</a>) of test scores obtained during hyperparameter optimization. This interpretability aids in understanding which parameters are most critical and how sensitive the model is to these settings.</p>
 <div id="fig-heatmaptuning" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -269,8 +274,84 @@ Figure&nbsp;2: Heatmap of test scores obtained during hyperparameter optimisatio
 </section>
 <section id="results-discussion" class="level2">
 <h2 class="anchored" data-anchor-id="results-discussion">Results &amp; Discussion</h2>
-<p>After performing hyperparameter optimisation, the SVM RBF model manage to achieve the best score of 0.99 on the test. This suggests the model has been generalised well, with high scores on both the train and test sets.</p>
-<p>To further improve the model’s utility, several changes can be made. One such change is feeding the model with features that are not just categorical. Instead, for features such as buying price, maintenance cost and safety features, numeric data should be used. At the same time, more features can be included, such as the type of car and and fuel efficiency ratings.</p>
+<p>After performing hyperparameter optimisation, the SVM RBF model manage to achieve the best f1 score of 0.99 on the test. This suggests the model has been generalised well, with high scores on both the train and test sets. Let’s have a look at the classification report<a href="#tbl-classification-report" class="quarto-xref">Table&nbsp;2</a>. It has a balanced performance across precision, recall, and F1-scores for each class. The weighted average metrics further confirm the robustness of the model. The weighted average F1-score 0.991 reflects balanced performance even with class imbalance. However, slightly lower recall for class good (0.857) suggests some misclassification, which could be improved with better feature engineering, or can be improved by increasing the data points.</p>
+<div class="cell" data-execution_count="4">
+<div id="tbl-classification-report" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-classification-report-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Classification report of the model
+</figcaption>
+<div aria-describedby="tbl-classification-report-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
+<table class="do-not-create-environment cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;">class</th>
+<th style="text-align: right;">precision</th>
+<th style="text-align: right;">recall</th>
+<th style="text-align: right;">f1-score</th>
+<th style="text-align: right;">support</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">acc</td>
+<td style="text-align: right;">0.962</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.981</td>
+<td style="text-align: right;">77</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">good</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.857</td>
+<td style="text-align: right;">0.923</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">unacc</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.996</td>
+<td style="text-align: right;">0.998</td>
+<td style="text-align: right;">242</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">vgood</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.991</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">macro avg</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.963</td>
+<td style="text-align: right;">0.975</td>
+<td style="text-align: right;">346</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">weighted avg</td>
+<td style="text-align: right;">0.992</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">346</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Below is a confusion matrix from cross validation(<strong>?@fig-confusionmatrix</strong>), we can visualize how model performs specifically on each classes. <img src="../results/figures/confusion_matrix.png" id="fig-confusionmatrix" class="img-fluid" style="width:70.0%" alt="Confusion matrix from cross validation"></p>
+<p>To further improve the model’s utility, several changes can be made. One such change is feeding the model with features that are not just categorical. Instead, for features such as buying price, maintenance cost and safety features, numeric data should be collected. At the same time, more features can be included, such as the type of car and and fuel efficiency ratings.</p>
 <p>By allowing the model to take in more complex data, this may allow the model to make more accurate predictions to let customers make a more informed choice when purchasing a new car.</p>
 </section>
 <section id="references" class="level2 unnumbered">
@@ -381,8 +462,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -493,7 +572,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {

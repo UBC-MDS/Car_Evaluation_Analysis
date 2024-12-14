@@ -68,10 +68,10 @@ python scripts/split_n_preprocess.py \
     --preprocessor-to results/models \
     --seed 123
 
-python scripts/evaluate_models.py \
+python scripts/select_ml_model.py \
     --train-data-from data/processed/car_train.csv \
     --preprocessor-from results/models/car_preprocessor.pickle \
-    --results-to results/tables \
+    --results-to results/tables
 
 python scripts/fit_car_analysis_classifier.py \
     --training-data data/processed/car_train.csv \
@@ -81,10 +81,13 @@ python scripts/fit_car_analysis_classifier.py \
     --seed 123 
 
 python scripts/evaluate_car_predictor.py \
+    --train-data data/processed/car_train.csv \
     --test-data data/processed/car_test.csv \
     --pipeline-from results/models/car_analysis.pickle \
     --results-to results/tables \
-    --seed 123 
+    --plot-to results/figures \
+    --seed 123
+
 
 quarto render report/car_evaluation_analysis.qmd --to html
 quarto render report/car_evaluation_analysis.qmd --to pdf
