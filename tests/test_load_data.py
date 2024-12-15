@@ -44,4 +44,3 @@ def test_invalid_file_extension(setup_csv_file):
 
     with pytest.raises(ValueError, match="The file provided is not a CSV file."):
         load_data(invalid_file)
-

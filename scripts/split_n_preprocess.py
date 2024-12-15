@@ -13,7 +13,7 @@ from sklearn.compose import make_column_transformer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OrdinalEncoder
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from src.data_analysis import run_data_analysis
+from data_validation import run_data_validation
 from src.save_pickle import save_pickle
 
 
@@ -41,7 +41,7 @@ def main(raw_data, data_to, preprocessor_to, seed):
         car_data, train_size=0.8, random_state=522, stratify=car_data['class']
     )
 
-    run_data_analysis(car_data)
+    run_data_validation(car_data)
 
     car_train.to_csv(os.path.join(data_to, 'car_train.csv'), index=False)
     car_test.to_csv(os.path.join(data_to, 'car_test.csv'), index=False)

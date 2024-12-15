@@ -2,7 +2,7 @@ import pandera as pa
 import pandas as pd
 
 
-def run_data_analysis(data):
+def run_data_validation(data):
     """
     Validates the input car data in the form of a pandas DataFrame against a predefined schema,
     and returns the validated DataFrame.
@@ -37,13 +37,13 @@ def run_data_analysis(data):
     # No outlier or anomalous values, since all of our data are categorical features, no need for this
     schema = pa.DataFrameSchema(
         {
-            'buying': pa.Column(str, pa.Check.isin(['low','med','high','vhigh']), nullable=False),
-            'maint': pa.Column(str, pa.Check.isin(['low','med','high','vhigh']), nullable=False),
-            'doors': pa.Column(str, pa.Check.isin(['2','3','4','5more']), nullable=False),
-            'persons': pa.Column(str, pa.Check.isin(['2','4','more']), nullable=False),
-            'lug_boot': pa.Column(str, pa.Check.isin(['small','med','big']), nullable=False),
-            'safety': pa.Column(str, pa.Check.isin(['low','med','high']), nullable=False),
-            'class': pa.Column(str, pa.Check.isin(['unacc','acc','vgood','good']), nullable=False)
+            'buying': pa.Column(str, pa.Check.isin(['low', 'med', 'high', 'vhigh']), nullable=False),
+            'maint': pa.Column(str, pa.Check.isin(['low', 'med', 'high', 'vhigh']), nullable=False),
+            'doors': pa.Column(str, pa.Check.isin(['2', '3', '4', '5more']), nullable=False),
+            'persons': pa.Column(str, pa.Check.isin(['2', '4', 'more']), nullable=False),
+            'lug_boot': pa.Column(str, pa.Check.isin(['small', 'med', 'big']), nullable=False),
+            'safety': pa.Column(str, pa.Check.isin(['low', 'med', 'high']), nullable=False),
+            'class': pa.Column(str, pa.Check.isin(['unacc', 'acc', 'vgood', 'good']), nullable=False)
         },
         checks=[
             pa.Check(lambda data: ~data.duplicated().any(), error='Duplicate rows found.')
