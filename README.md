@@ -137,7 +137,9 @@ This dataset is licensed under a [Creative Commons Attribution 4.0 International
 
 ## References
 
-* Bohanec, M. (1988). Car Evaluation [Dataset]. _UCI Machine Learning Repository._ (https://doi.org/10.24432/C5JP48).
-* Makki, S., Mustapha, A., Kassim, J. M., Gharayebeh, E. H., & Alhazmi, M. (2011, April). Employing neural network and naive Bayesian classifier in mining data for car evaluation. In Proc. _ICGST AIML-11 Conference (pp. 113-119)._
-* Potdar, K., Pardawala, T. S., & Pai, C. D. (2017). A comparative study of categorical variable encoding techniques for neural network classifiers. _International journal of computer applications, 175(4), 7-9._
-* Tanveer, M., Gautam, C., & Suganthan, P. N. (2019). Comprehensive evaluation of twin SVM based classifiers on UCI datasets. _Applied Soft Computing, 83_, 105617.
+* Van Rossum, G., & Drake, F. L. (2009). *Python 3 Reference Manual*. CreateSpace, Scotts Valley, CA. ISBN: 1441412697.
+* McKinney, W. (2010). Data Structures for Statistical Computing in Python. In *Proceedings of the 9th Python in Science Conference* (pp. 56-61). Edited by S. van der Walt and J. Millman. DOI: [10.25080/Majora-92bf1922-00a](https://doi.org/10.25080/Majora-92bf1922-00a).
+* Hunter, J. D. (2007). Matplotlib: A 2D graphics environment. *Computing in Science & Engineering*, 9(3), 90-95. DOI: [10.1109/MCSE.2007.55](https://doi.org/10.1109/MCSE.2007.55).
+* Pedregosa, F. _et al_. Scikit-learn: Machine Learning in Python. *Journal of Machine Learning Research*, 12, 2825-2830.
+* Bohanec, M. (1988). Car Evaluation. UCI Machine Learning Repository. DOI: [10.24432/C5JP48](https://doi.org/10.24432/C5JP48).
+* Harris, C. R. _et al_. (2020). Array programming with NumPy. *Nature*, 585(7825), 357-362. DOI: [10.1038/s41586-020-2649-2](https://doi.org/10.1038/s41586-020-2649-2).
