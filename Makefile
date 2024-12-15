@@ -1,20 +1,8 @@
 .PHONY: all clean
 
 
-all: data/raw/car_data_raw.csv \
-    data/processed/car_train.csv \
-    data/processed/car_test.csv \
-    data/processed/encoded_car_train.csv \
+all: data/processed/encoded_car_train.csv \
     data/processed/encoded_car_test.csv \
-    results/models/car_preprocessor.pickle \
-    results/figures/target_distribution_raw.png \
-    results/figures/feature_counts_by_class.png \
-    results/tables/model_selection_results.csv \
-    results/figures/car_hyperparameter.png \
-    results/tables/test_scores.csv \
-    results/tables/classification_report.csv \
-    results/figures/confusion_matrix.png \
-    results/models/car_analysis.pickle \
     report/car_evaluation_analysis.html \
     report/car_evaluation_analysis.pdf
 
@@ -65,10 +53,10 @@ results/tables/test_scores.csv results/tables/classification_report.csv results/
 		--seed 123
 
 # Render the Quarto report
-report/car_evaluation_analysis.html: report/car_evaluation_analysis.qmd results/tables/test_scores.csv results/models/car_analysis.pickle
+report/car_evaluation_analysis.html: report/car_evaluation_analysis.qmd results/tables/test_scores.csv results/tables/classification_report.csv results/models/car_analysis.pickle results/tables/model_selection_results.csv results/figures/target_distribution_raw.png results/figures/feature_counts_by_class.png results/figures/car_hyperparameter.png results/figures/confusion_matrix.png
 	quarto render report/car_evaluation_analysis.qmd --to html
 
-report/car_evaluation_analysis.pdf: report/car_evaluation_analysis.qmd results/tables/test_scores.csv results/models/car_analysis.pickle
+report/car_evaluation_analysis.pdf: report/car_evaluation_analysis.qmd results/tables/test_scores.csv results/tables/classification_report.csv results/models/car_analysis.pickle
 	quarto render report/car_evaluation_analysis.qmd --to pdf
 
 # Clean up generated files
