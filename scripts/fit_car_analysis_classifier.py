@@ -19,6 +19,7 @@ from src.save_plot import save_plot
 from sklearn.metrics import f1_score, make_scorer
 import matplotlib.pyplot as plt
 
+
 @click.command()
 @click.option('--training-data', type=str, help="Path to training data")
 @click.option('--preprocessor', type=str, help="Path to preprocessor pickle")
@@ -64,6 +65,7 @@ def main(training_data, preprocessor, pipeline_to, plot_to, seed):
     ax.set_yticklabels([f"$10^{{{int(np.log10(g))}}}$" for g in gamma_values])
 
     save_plot(fig, plot_to, filename="car_hyperparameter.png")
+
 
 if __name__ == '__main__':
     main()

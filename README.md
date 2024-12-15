@@ -52,47 +52,17 @@ The final report can be found [here](https://ubc-mds.github.io/Car_Evaluation_An
 
     ![jupyter-container-web-app-launch-url](./img/jupyter-container-web-app-launch-url.png)
 
-4. To run the analysis, open a terminal and run the following commands
+4. To reset the project to a clean slate, open a terminal in the root of the project and run the following command.
 
-```bash
-python scripts/download_data.py \
-    --data-to data/raw
+    ```bash
+    make clean
+    ```
 
-python scripts/eda.py \
-    --raw-data data/raw/car_data_raw.csv
-    --processed-training-data data/processed/car_train.csv \
-    --plot-to results/figures \
+5. To run the entire analysis, open a terminal in the root of the project and run the following command.
 
-python scripts/split_n_preprocess.py \
-    --raw-data data/raw/car_data_raw.csv \
-    --data-to data/processed \
-    --preprocessor-to results/models \
-    --seed 123
-
-python scripts/select_ml_model.py \
-    --train-data-from data/processed/car_train.csv \
-    --preprocessor-from results/models/car_preprocessor.pickle \
-    --results-to results/tables
-
-python scripts/fit_car_analysis_classifier.py \
-    --training-data data/processed/car_train.csv \
-    --preprocessor results/models/car_preprocessor.pickle \
-    --pipeline-to results/models \
-    --plot-to results/figures \
-    --seed 123 
-
-python scripts/evaluate_car_predictor.py \
-    --train-data data/processed/car_train.csv \
-    --test-data data/processed/car_test.csv \
-    --pipeline-from results/models/car_analysis.pickle \
-    --results-to results/tables \
-    --plot-to results/figures \
-    --seed 123
-
-
-quarto render report/car_evaluation_analysis.qmd --to html
-quarto render report/car_evaluation_analysis.qmd --to pdf
-```
+    ```bash
+    make all
+    ```
 
 ### Clean Up
 
@@ -130,6 +100,12 @@ quarto render report/car_evaluation_analysis.qmd --to pdf
 6. Update the `docker-compose.yaml` file on your branch to use the new container image (make sure to update the tag specifically).
 
 7. Send a Pull Request and merge your branch changes into the `main` branch.
+
+### Running the Test Suite
+
+1. Launch Jupyter Lab using the same `docker compose up` command in the [Running the Analysis](#running-the-analysis) section.
+
+2. To run the test suite, open a terminal in the root of the project and run the `pytest` command.
 
 ## License
 

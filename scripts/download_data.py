@@ -8,13 +8,11 @@
 
 import click
 import os
-import pandas as pd
 from ucimlrepo import fetch_ucirepo
+
 
 @click.command()
 @click.option('--data-to', type=str, help="Path to directory where processed data will be written to")
-
-
 def main(data_to):
     '''
     This script downloads the raw data from the UCI source.

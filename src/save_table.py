@@ -1,6 +1,7 @@
 import os
 import pandas as pd
 
+
 def save_table(dataframe, directory_path, table_name):
     """
     Saves a DataFrame as a CSV file named table_name in the specified directory.
@@ -22,7 +23,7 @@ def save_table(dataframe, directory_path, table_name):
 
     if not os.path.isdir(directory_path):
         raise FileNotFoundError(f"The directory '{directory_path}' does not exist.")
-    
+
     if not table_name.endswith('.csv'):
         raise ValueError("The table_name must end with '.csv'.")
 

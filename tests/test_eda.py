@@ -1,10 +1,10 @@
 import os
 import pytest
-import altair as alt
 import pandas as pd
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.edafunction import save_altair_plot, create_target_distribution_plot, create_feature_distributions_plot
+
 
 @pytest.fixture
 def setup_directory():
@@ -17,6 +17,7 @@ def setup_directory():
     yield directory
     print(f"Test files saved in: {directory}")
 
+
 @pytest.fixture
 def raw_data_sample():
     """
@@ -25,6 +26,7 @@ def raw_data_sample():
     return pd.DataFrame({
         "class": ["acc", "unacc", "good", "vgood", "unacc", "acc"]
     })
+
 
 @pytest.fixture
 def processed_data_sample():
@@ -54,6 +56,7 @@ def test_create_target_distribution_plot(setup_directory, raw_data_sample):
 
     filepath = os.path.join(directory, filename)
     assert os.path.exists(filepath), "The target distribution plot file was not created."
+
 
 def test_create_feature_distributions_plot(setup_directory, processed_data_sample):
     """

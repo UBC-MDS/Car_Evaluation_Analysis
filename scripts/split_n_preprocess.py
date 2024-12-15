@@ -19,8 +19,6 @@ from sklearn.preprocessing import OrdinalEncoder
 @click.option('--data-to', type=str, help='Path to directory where processed data will be written to')
 @click.option('--preprocessor-to', type=str, help='Path to directory where the preprocessor object will be written to')
 @click.option('--seed', type=int, help='Random seed', default=123)
-
-
 def main(raw_data, data_to, preprocessor_to, seed):
     '''
     This script splits the raw data into train and test sets, 
@@ -29,10 +27,10 @@ def main(raw_data, data_to, preprocessor_to, seed):
     '''
     np.random.seed(seed)
     set_config(transform_output='pandas')
-    
+
     # import raw data
     # data located at https://archive.ics.uci.edu/dataset/19/car+evaluation
-    colnames = ['buying','maint','doors','persons','lug_boot','safety','class']
+    colnames = ['buying', 'maint', 'doors', 'persons', 'lug_boot', 'safety', 'class']
     car_data = pd.read_csv(raw_data, names=colnames, header=0)
 
     # train test split, export to csv
@@ -76,7 +74,7 @@ def main(raw_data, data_to, preprocessor_to, seed):
         verbose_feature_names_out=False
     )
     pickle.dump(car_preprocessor, open(os.path.join(preprocessor_to, 'car_preprocessor.pickle'), 'wb'))
-    
+
     car_preprocessor.fit(car_train)
     encoded_car_train = car_preprocessor.transform(car_train)
     encoded_car_test = car_preprocessor.transform(car_test)

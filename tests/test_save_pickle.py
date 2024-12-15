@@ -5,11 +5,13 @@ import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.save_pickle import save_pickle
 
+
 @pytest.fixture
 def test_dir():
     directory = "./test_dir"
     os.makedirs(directory, exist_ok=True)
     yield directory
+
 
 def test_save_valid_directory(test_dir):
     filename = "test_object.pickle"
@@ -20,6 +22,7 @@ def test_save_valid_directory(test_dir):
     with open(filepath, "rb") as file:
         loaded_obj = pickle.load(file)
     assert loaded_obj == obj, "Loaded object does not match saved object."
+
 
 def test_invalid_directory():
     invalid_directory = "./nonexistent_dir"
