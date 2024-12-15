@@ -5,6 +5,7 @@
 import pickle
 import os
 
+
 def load_pickle(file_path):
     """
     Loads an object from a pickle file.
@@ -14,13 +15,13 @@ def load_pickle(file_path):
 
     Returns:
         object: The loaded pickle.
-        
+
     Raises:
         ValueError: If the input pickle is not valid.
     """
     if not os.path.isfile(file_path):
         raise ValueError('The file provided does not exist.')
-    
+
     if not file_path.endswith('.pkl') and not file_path.endswith('.pickle'):
         raise ValueError('The file provided is not a pickle file.')
     try:

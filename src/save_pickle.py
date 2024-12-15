@@ -5,6 +5,7 @@
 import pickle
 import os
 
+
 def save_pickle(obj, directory, filename="object.pickle"):
     """
     Saves an object to a pickle file.
@@ -16,7 +17,7 @@ def save_pickle(obj, directory, filename="object.pickle"):
 
     Returns:
         None
-        
+
     Raises:
         ValueError: If the output pickle is not valid.
         FileNotFoundError: If the directory does not exist.

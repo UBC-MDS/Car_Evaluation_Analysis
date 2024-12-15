@@ -4,6 +4,7 @@
 
 import numpy as np
 
+
 def tidy_cv_result(model_name, scores):
     '''
     Summarises cross-validation results for a given model.
@@ -27,20 +28,19 @@ def tidy_cv_result(model_name, scores):
         Ridge(), X_train, y_train, return_train_score=True
     )
     >> cv_results['Ridge'] = tidy_cv_result('Ridge', scores)
-
     '''
     if not isinstance(model_name, str):
         raise TypeError('The provided model name is not of type `str`.')
 
     if not isinstance(scores, dict):
         raise TypeError('The provided data is not of type `dict`.')
-    
+
     if not all(key in scores for key in ['train_score', 'test_score']):
         raise ValueError('The dictionary must contain `train_score` and `test_score` keys.')
-    
+
     if len(scores['train_score']) == 0 or len(scores['test_score']) == 0:
         raise ValueError('`scores` do not contain expected values')
-    
+
     result = {
             'Model': model_name,
             'Mean train score': np.mean(scores['train_score']),

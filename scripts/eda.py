@@ -6,6 +6,7 @@ import os
 import altair as alt
 import pandas as pd
 
+
 @click.command()
 @click.option('--raw-data', type=str, required=True, help="Path to raw data (before preprocessing)")
 @click.option('--processed-training-data', type=str, required=True, help="Path to processed training data")
@@ -26,7 +27,6 @@ def main(raw_data, processed_training_data, plot_to):
     )
     raw_target_distribution.save(os.path.join(plot_to, "target_distribution_raw.png"), scale_factor=2.0)
 
-
     car_train = pd.read_csv(processed_training_data)
     plot = alt.Chart(car_train).mark_bar().encode(
         x=alt.X(alt.repeat('row')),
@@ -40,6 +40,7 @@ def main(raw_data, processed_training_data, plot_to):
     )
 
     plot.save(os.path.join(plot_to, "feature_counts_by_class.png"), scale_factor=2.0)
+
 
 if __name__ == '__main__':
     main()

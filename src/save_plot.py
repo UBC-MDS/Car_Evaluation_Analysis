@@ -4,6 +4,7 @@
 
 import os
 
+
 def save_plot(figure, directory, filename="plot.png"):
     """
     Saves a given plot to a specified directory.
@@ -15,7 +16,7 @@ def save_plot(figure, directory, filename="plot.png"):
 
     Returns:
         None
-        
+
     Raises:
         FileNotFoundError: If the directory does not exist.
     """

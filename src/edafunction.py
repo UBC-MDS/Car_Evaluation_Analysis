@@ -2,6 +2,7 @@ import os
 import altair as alt
 import pandas as pd
 
+
 def save_altair_plot(plot, directory, filename="eda.png"):
     """
     Saves an Altair plot to a specified directory.
@@ -21,7 +22,6 @@ def save_altair_plot(plot, directory, filename="eda.png"):
         plot.save(os.path.join(directory, filename), scale_factor=2.0)
     except Exception as e:
         raise ValueError(f"Error saving the plot: {e}")
-
 
 
 def create_target_distribution_plot(data):
