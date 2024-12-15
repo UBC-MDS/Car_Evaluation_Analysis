@@ -56,7 +56,7 @@ results/tables/test_scores.csv results/tables/classification_report.csv results/
 report/car_evaluation_analysis.html: report/car_evaluation_analysis.qmd results/tables/test_scores.csv results/tables/classification_report.csv results/models/car_analysis.pickle results/tables/model_selection_results.csv results/figures/target_distribution_raw.png results/figures/feature_counts_by_class.png results/figures/car_hyperparameter.png results/figures/confusion_matrix.png
 	quarto render report/car_evaluation_analysis.qmd --to html
 
-report/car_evaluation_analysis.pdf: report/car_evaluation_analysis.qmd results/tables/test_scores.csv results/tables/classification_report.csv results/models/car_analysis.pickle
+report/car_evaluation_analysis.pdf: report/car_evaluation_analysis.qmd results/tables/test_scores.csv results/tables/classification_report.csv results/models/car_analysis.pickle results/tables/model_selection_results.csv results/figures/target_distribution_raw.png results/figures/feature_counts_by_class.png results/figures/car_hyperparameter.png results/figures/confusion_matrix.png
 	quarto render report/car_evaluation_analysis.qmd --to pdf
 
 # Clean up generated files

@@ -4,14 +4,17 @@
 
 import click
 import os
+import sys
 import pickle
 import numpy as np
-import pandera as pa
 import pandas as pd
 from sklearn import set_config
 from sklearn.compose import make_column_transformer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OrdinalEncoder
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from data_validation import run_data_validation
+from src.save_pickle import save_pickle
 
 
 @click.command()
@@ -38,25 +41,7 @@ def main(raw_data, data_to, preprocessor_to, seed):
         car_data, train_size=0.8, random_state=522, stratify=car_data['class']
     )
 
-    # Validate data schema with Pandera
-    # Correct data types in each column
-    # No duplicate observations,
-    # No outlier or anomalous values, since all of our data are categorical features, no need for this
-    schema = pa.DataFrameSchema(
-        {
-            'buying': pa.Column(str, pa.Check.isin(['low','med','high','vhigh']), nullable=False),
-            'maint': pa.Column(str, pa.Check.isin(['low','med','high','vhigh']), nullable=False),
-            'doors': pa.Column(str, pa.Check.isin(['2','3','4','5more']), nullable=False),
-            'persons': pa.Column(str, pa.Check.isin(['2','4','more']), nullable=False),
-            'lug_boot': pa.Column(str, pa.Check.isin(['small','med','big']), nullable=False),
-            'safety': pa.Column(str, pa.Check.isin(['low','med','high']), nullable=False),
-            'class': pa.Column(str, pa.Check.isin(['unacc','acc','vgood','good']), nullable=False)
-        },
-        checks=[
-            pa.Check(lambda car_data: ~car_data.duplicated().any(), error='Duplicate rows found.')
-        ]
-    )
-    schema.validate(car_data, lazy=True)
+    run_data_validation(car_data)
 
     car_train.to_csv(os.path.join(data_to, 'car_train.csv'), index=False)
     car_test.to_csv(os.path.join(data_to, 'car_test.csv'), index=False)
@@ -64,16 +49,16 @@ def main(raw_data, data_to, preprocessor_to, seed):
     # preprocessing
     # transform categorical features
     car_preprocessor = make_column_transformer(
-        (OrdinalEncoder(categories=[['low','med','high','vhigh']]), ['buying']),
-        (OrdinalEncoder(categories=[['low','med','high','vhigh']]), ['maint']),
-        (OrdinalEncoder(categories=[['2','3','4','5more']]), ['doors']),
-        (OrdinalEncoder(categories=[['2','4','more']]), ['persons']),
-        (OrdinalEncoder(categories=[['small','med','big']]), ['lug_boot']),
-        (OrdinalEncoder(categories=[['low','med','high']]), ['safety']),
+        (OrdinalEncoder(categories=[['low', 'med', 'high', 'vhigh']]), ['buying']),
+        (OrdinalEncoder(categories=[['low', 'med', 'high', 'vhigh']]), ['maint']),
+        (OrdinalEncoder(categories=[['2', '3', '4', '5more']]), ['doors']),
+        (OrdinalEncoder(categories=[['2', '4', 'more']]), ['persons']),
+        (OrdinalEncoder(categories=[['small', 'med', 'big']]), ['lug_boot']),
+        (OrdinalEncoder(categories=[['low', 'med', 'high']]), ['safety']),
         remainder='passthrough',
         verbose_feature_names_out=False
     )
-    pickle.dump(car_preprocessor, open(os.path.join(preprocessor_to, 'car_preprocessor.pickle'), 'wb'))
+    save_pickle(car_preprocessor, preprocessor_to, filename='car_preprocessor.pickle')
 
     car_preprocessor.fit(car_train)
     encoded_car_train = car_preprocessor.transform(car_train)
