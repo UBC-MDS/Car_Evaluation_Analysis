@@ -115,7 +115,7 @@ div.csl-indent {
 </header>
 
 
-<div id="9ef5cdf4" class="cell" data-execution_count="2">
+<div id="42acac85" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-stdout">
 <pre><code></code></pre>
 </div>
@@ -147,18 +147,27 @@ div.csl-indent {
 </li>
 <li>Safety rating: <code>low</code>, <code>med</code>, <code>high</code></li>
 </ul>
-<p>Each row in the dataset details a car’s attributes (features) and its <strong>acceptability</strong> (target variable). The target variable is categorized into four class labels: - <code>unacc</code>: Unacceptable. Cars that fail to meet basic criteria.<br>
-- <code>acc</code>: Acceptable. Cars that meet minimum requirements.<br>
-- <code>good</code>: Good. Cars that exceed average standards in some aspects.<br>
-- <code>vgood</code>: Very good. Cars that meet the highest standards.</p>
+<p>Each row in the dataset details a car’s attributes (features) and its <strong>acceptability</strong> (target variable). The target variable is categorized into four class labels:</p>
+<ul>
+<li><code>unacc</code>: Unacceptable. Cars that fail to meet basic criteria.<br>
+</li>
+<li><code>acc</code>: Acceptable. Cars that meet minimum requirements.<br>
+</li>
+<li><code>good</code>: Good. Cars that exceed average standards in some aspects.<br>
+</li>
+<li><code>vgood</code>: Very good. Cars that meet the highest standards.</li>
+</ul>
 </section>
 <section id="exploratory-data-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h3>
 <p>Exploratory data analysis was carried out on the train dataset.</p>
-<p>To assess the balance of target classes in the dataset, the distribution of the target variable was visualized (see <a href="#fig-targetdist" class="quarto-xref">Figure&nbsp;1</a>). We can see the dataset has a significant class imbalance which is the <code>unacceptable</code> class. This imbalance can affect model performance:<br>
-- Models may overpredict the <code>unacceptable</code> class and fail to identify minority classes (<code>good</code>, <code>vgood</code>).<br>
-- It could be high simply by predicting the majority class, so accuracy may be misleading. We can consider metrics like Precision, Recall, and F1-score.<br>
-This imbalance may require further handling. For example, oversampling, undersampling, or class-weighted loss functions during training.</p>
+<p>To assess the balance of target classes in the dataset, the distribution of the target variable was visualized (see <a href="#fig-targetdist" class="quarto-xref">Figure&nbsp;1</a>). We can see the dataset has a significant class imbalance which is the <code>unacceptable</code> class. This imbalance can affect model performance:</p>
+<ul>
+<li>Models may overpredict the <code>unacceptable</code> class and fail to identify minority classes (<code>good</code>, <code>vgood</code>).<br>
+</li>
+<li>It could be high simply by predicting the majority class, so accuracy may be misleading. We can consider metrics like Precision, Recall, and F1-score.</li>
+</ul>
+<p>This imbalance may require further handling. For example, oversampling, undersampling, or class-weighted loss functions during training.</p>
 <div id="fig-targetdist" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-targetdist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -208,7 +217,7 @@ Figure&nbsp;2: Distribution of Features by Class
 Table&nbsp;1: Results of model selection conducted using cross-validation
 </figcaption>
 <div aria-describedby="tbl-model_selection_results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="3">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="19">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <colgroup>
 <col style="width: 23%">
@@ -306,7 +315,7 @@ Figure&nbsp;3: Heatmap of test scores obtained during hyperparameter optimisatio
 Table&nbsp;2: Classification report of the model
 </figcaption>
 <div aria-describedby="tbl-classification-report-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="20">
 <table class="do-not-create-environment cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
