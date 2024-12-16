@@ -6,11 +6,11 @@
 
 - [Enhance script names and docstrings to be more descriptive and less generic.](https://github.com/UBC-MDS/Car_Evaluation_Analysis/commit/fc2edaa6c2e03f65b727c38436bbbd3c0507425e)
 
-- [Tie the CODE_OF_CONDUCT email under "enforcement" to the team]()
+- [Tie the CODE_OF_CONDUCT email under "enforcement" to the team](https://github.com/UBC-MDS/Car_Evaluation_Analysis/pull/124/files#diff-ffdbe3a1e7ee93cacfc080b6c635ccf3a8f6b0f00f2fb884f78c6b5f9dac8fd2R62)
 
 ## Introduction
 
-- [Clearly identify the question being asked]()
+- [Clearly identify the question being asked](https://github.com/UBC-MDS/Car_Evaluation_Analysis/pull/124/files#diff-f6e2e8e1e157224752ba921e2acecf0e26beacb97763cfcc10610f7d2e59dc2aR51)
 
 ## Methodology & Analysis
 
@@ -20,7 +20,7 @@
 
 - [Add a confusion matrix plot for better visual clarity of results.](https://github.com/UBC-MDS/Car_Evaluation_Analysis/commit/455da6d36ebf8a13a92760358cc82d98ff7eac08#diff-fb6bd7aba37c5f1ae7faca4340f9e718fa8e1973ff9512cfd97519b2bcf9a979R52-R58)
 
-- [Explain in narrative what metric was being used for model parameter optimization]()
+- [Explain in narrative what metric was being used for model parameter optimization](https://github.com/UBC-MDS/Car_Evaluation_Analysis/pull/124/files#diff-f6e2e8e1e157224752ba921e2acecf0e26beacb97763cfcc10610f7d2e59dc2aR51)
 
 ## Hyperparameter Tuning
 
