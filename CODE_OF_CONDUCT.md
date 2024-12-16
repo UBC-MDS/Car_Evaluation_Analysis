@@ -59,7 +59,7 @@ representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behavior may be
-reported to the project team.
+reported to the project team at nickvara@student.ubc.ca.
 All complaints will be reviewed and investigated promptly and fairly.
 
 The project team is obligated to respect the privacy and security of the

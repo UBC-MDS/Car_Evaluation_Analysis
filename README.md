@@ -119,3 +119,4 @@ This dataset is licensed under a [Creative Commons Attribution 4.0 International
 * Pedregosa, F. _et al_. Scikit-learn: Machine Learning in Python. *Journal of Machine Learning Research*, 12, 2825-2830.
 * Bohanec, M. (1988). Car Evaluation. UCI Machine Learning Repository. DOI: [10.24432/C5JP48](https://doi.org/10.24432/C5JP48).
 * Harris, C. R. _et al_. (2020). Array programming with NumPy. *Nature*, 585(7825), 357-362. DOI: [10.1038/s41586-020-2649-2](https://doi.org/10.1038/s41586-020-2649-2).
+* Developers, Scikit-learn. 2024. Grid Search — Scikit-Learn Documentation. https://scikit-learn.org/stable/modules/grid_search.html.

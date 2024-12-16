@@ -41,15 +41,14 @@ print()
 ## Summary
 
 In this project, we attempt to predict the level of acceptability of cars by building a machine learning model in Python [@Python]. The acceptability levels include four class labels: `unacc` (unacceptable), `acc` (acceptable), `good`, and `vgood` (very good).
-We use a data created by the efforts of M. Bohanec in the late 1980s. It is sourced from the UCI Machine Learning Repository and is publicly available for research. Every features and target in this dataset are all encoded by one-hot encoder for data analysis.
-To choose the best model for this task, we utilised several common machine learning models, 
-and found out that the SVM RBF classifier achieved the best train and cross-validation scores, with a test accuracy of `{python} model_selection_results['Mean CV score'][3]`. 
-The SVM RBF model also showed exceptional ability in determining the acceptability of cars as seen in accuracy. Because we see that there is a class imbalance on the dateset, we calculate the F1 score to test if our model have good performance. With an f1 score of `{python} test_scores_df['f1_score'].values[0]` on test data, we justify that the model performs well on unseen data, even with a class imbalance. 
-This makes the SVM RBF model a solid choice for this project. By looking deep into the performance of model on difference classes, we see the model performs exceptionally well overall, with near-perfect scores across all metrics. However, class good has a slight recall issue, indicating some instances of this class are being missed. A confusion matrix with cross validation is brought to further visualize what is happening.
+We use a data created by the efforts of M. Bohanec in the late 1980s. It is sourced from the UCI Machine Learning Repository and is publicly available for research [@dataset]. Every feature and target in this dataset is encoded by one-hot encoder for data analysis.
+To choose the best model for this task, we utilised several common machine learning models, and found out that the SVM RBF classifier achieved the best train and cross-validation scores, with a test accuracy of `{python} model_selection_results['Mean CV score'][3]`. 
+The SVM RBF model also showed exceptional ability in determining the acceptability of cars as seen in accuracy. Because we see that there is a class imbalance on the dateset, we calculate the f1 score to test if our model has good performance. With a f1 score of `{python} test_scores_df['f1_score'].values[0]` on test data, we justify that the model performs well on unseen data, even with a class imbalance. 
+This makes the SVM RBF model a solid choice for this project. By looking deep into the performance of model on difference classes, we see the model performs exceptionally well overall, with near-perfect scores across all metrics. However, class `good` has a slight recall issue, indicating some instances of this class are being missed. A confusion matrix with cross validation is brought to further visualize what is happening.
 
 ## Introduction
 
-The Car Evaluation Dataset was created as part of efforts to understand the factors that affect the acceptability of cars among consumers. These factors include buying price of a car, maintenance costs, passenger and luggage capacity, and safety. The goal of this project is to develop a machine learning model that can evaluate the quality of a car based on its attributes to help buyers make a more informed decision for their next car purchase.
+The Car Evaluation Dataset was created as part of efforts to understand the factors that affect the acceptability of cars among consumers. "Acceptability" is categorized as a categorical variable with four levels; "Unacceptable", "Acceptable", "Good", and "Very Good." The factors affecting acceptability include buying price of a car, maintenance costs, passenger and luggage capacity, and safety.  A consumer's decision to purchase a car is influenced by the acceptability of the car. The goal of this project is to develop a machine learning model that can evaluate the quality of a car based on its attributes to help buyers make a more informed decision for their next car purchase. Due to many factors determining the condition of a car, this is not an easy decision for consumers to make on their own.
 
 ## Methods
 
@@ -57,29 +56,32 @@ The Car Evaluation Dataset was created as part of efforts to understand the fact
 
 The dataset that was used in this project is of Car Evaluation Database [@dataset] created by the efforts of M. Bohanec in the late 1980s. It is sourced from the UCI Machine Learning Repository and is publicly available for research. 
 
-Each row in the dataset details a car’s attributes (each feature is of categorical data type with several levels), which includes:
+Each row in the dataset details a car’s attributes (each feature is of categorical data type with several levels), which includes:  
 
--   Buying price: `low`, `med`, `high`, `vhigh`
--   Maintenance cost: `low`, `med`, `high`, `vhigh`
--   Number of doors: `2`, `3`, `4`, `5more`
--   Seating capacity: `2`, `4`, `more`
--   Boot size: `small`, `med`, `big`
--   Safety rating: `low`, `med`, `high`
+-   Buying price: `low`, `med`, `high`, `vhigh`  
+-   Maintenance cost: `low`, `med`, `high`, `vhigh`  
+-   Number of doors: `2`, `3`, `4`, `5more`  
+-   Seating capacity: `2`, `4`, `more`  
+-   Boot size: `small`, `med`, `big`  
+-   Safety rating: `low`, `med`, `high`  
 
-Each row in the dataset details a car’s attributes (features) and its **acceptability** (target variable). The target variable is categorized into four class labels:
-- `unacc`: Unacceptable. Cars that fail to meet basic criteria.
-- `acc`: Acceptable. Cars that meet minimum requirements.
-- `good`: Good. Cars that exceed average standards in some aspects.
-- `vgood`: Very good. Cars that meet the highest standards.
+Each row in the dataset details a car’s attributes (features) and its **acceptability** (target variable). The target variable is categorized into four class labels:  
+
+- `unacc`: Unacceptable. Cars that fail to meet basic criteria.  
+- `acc`: Acceptable. Cars that meet minimum requirements.  
+- `good`: Good. Cars that exceed average standards in some aspects.  
+- `vgood`: Very good. Cars that meet the highest standards.  
 
 
 ### Exploratory Data Analysis
 
 Exploratory data analysis was carried out on the train dataset.
 
-To assess the balance of target classes in the dataset, the distribution of the target variable was visualized (see @fig-targetdist). We can see the dataset has a significant class imbalance which is the `unacceptable` class. This imbalance can affect model performance:
-- Models may overpredict the `unacceptable` class and fail to identify minority classes (`good`, `vgood`).
-- It could be high simply by predicting the majority class, so accuracy may be misleading. We can consider metrics like Precision, Recall, and F1-score.
+To assess the balance of target classes in the dataset, the distribution of the target variable was visualized (see @fig-targetdist). We can see the dataset has a significant class imbalance which is the `unacceptable` class. This imbalance can affect model performance:  
+
+- Models may overpredict the `unacceptable` class and fail to identify minority classes (`good`, `vgood`).  
+- It could be high simply by predicting the majority class, so accuracy may be misleading. We can consider metrics like Precision, Recall, and F1-score.  
+
 This imbalance may require further handling. For example, oversampling, undersampling, or class-weighted loss functions during training.
 
 ![Distribution of Target Variable](../results/figures/target_distribution_raw.png){#fig-targetdist width=50%}
@@ -125,11 +127,11 @@ While the Decision Tree model yielded the best train and cross-validation scores
 the perfect train score suggests that the model has overfitted to the data.
 Therefore, we will be using SVM RBF for this project.
 
-### Model Optimisation
+### Model Optimization
 
-With the best model identified, the next step was to improve its performance through hyperparameter optimization. Using RandomizedSearchCV, a range of values for the SVM’s hyperparameters C and gamma were explored. This approach allowed for an efficient and thorough search across the parameter space, and results in an optimal esitimator to use. We use f1 weighted score to tune because of a multiclass dataset. 
+With the best model identified, the next step was to improve its performance through hyperparameter optimization. Using RandomizedSearchCV, a range of values for the SVM’s hyperparameters C and gamma were explored. The range of hyperparameters was chosen to cover a range of possibly useful hyperparameter values, which are commonly used in hyperparameter optimization for SVM classifier [@scikit-learn_grid_search]. This approach allowed for an efficient and thorough search across the parameter space, and results in an optimal esitimator to use. We use f1 weighted score to tune because of a multiclass dataset. 
 
-The visualizations below, including a heatmap (@fig-heatmaptuning) of test scores obtained during hyperparameter optimization. This interpretability aids in understanding which parameters are most critical and how sensitive the model is to these settings.
+The visualizations are below, including a heatmap (@fig-heatmaptuning) of test scores obtained during hyperparameter optimization. This interpretability aids in understanding which parameters are most critical and how sensitive the model is to these settings.
 
 ![Heatmap of test scores obtained during hyperparameter optimisation](../results/figures/car_hyperparameter.png){#fig-heatmaptuning width=70%}
 
@@ -140,19 +142,17 @@ The code used to perform the analysis and create this report can be found here: 
 
 ## Results & Discussion
 
-After performing hyperparameter optimisation, the SVM RBF model manage to achieve the best f1 score of `{python} test_scores_df['f1_score'].values[0]` on the test.
-This suggests the model has been generalised well, with high scores on both the train and test sets. Let's have a look at the classification report [@tbl-classification-report]. It has a balanced performance across precision, recall, and F1-scores for each class. The weighted average metrics further confirm the robustness of the model. The weighted average F1-score `{python} classification_report['f1-score'].iloc[6]` reflects balanced performance even with class imbalance. However, slightly lower recall for class good (`{python} classification_report['recall'].iloc[1]`) suggests some misclassification, which could be improved with better feature engineering, or can be improved by increasing the data points.
+After performing hyperparameter optimization, the SVM RBF model manage to achieve the best f1 score of `{python} test_scores_df['f1_score'].values[0]` on the test data.
+This suggests the model has been generalised well, with high scores on both the train and test sets. Let's have a look at the classification report [@tbl-classification-report]. It has a balanced performance across precision, recall, and F1-scores for each class. The weighted average metrics further confirm the robustness of the model. The weighted average F1-score `{python} classification_report['f1-score'].iloc[6]` reflects balanced performance even with class imbalance. However, slightly lower recall for class "good" (`{python} classification_report['recall'].iloc[1]`) suggests some misclassification, which could be improved with better feature engineering, or can be improved by increasing the data points.
 
 ```{python}
-
 #| label: tbl-classification-report
 #| tbl-cap: Classification report of the model
 
 Markdown(classification_report.to_markdown(index=False))
-
 ```
 
-Below is a confusion matrix from cross validation(@fig-confusionmatrix), we can visualize how model performs specifically on each classes. 
+Below is a confusion matrix from cross validation (@fig-confusionmatrix), we can visualize how model performs specifically on each classes. 
 
 ![Confusion matrix from cross validation](../results/figures/confusion_matrix.png){#fig-confusionmatrix width=70%}
 

@@ -13,7 +13,7 @@ from sklearn.compose import make_column_transformer
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OrdinalEncoder
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
-from data_validation import run_data_validation
+from src.data_validation import run_data_validation
 from src.save_pickle import save_pickle
 
 
