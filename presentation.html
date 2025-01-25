@@ -6,8 +6,8 @@
 <script src="presentation_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="presentation_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="presentation_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="presentation_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.40">
+<link href="presentation_files/libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong">
   <meta name="dcterms.date" content="2025-01-25">
@@ -29,7 +29,27 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="presentation_files/libs/revealjs/dist/theme/quarto-bbe7401fe57d4b791b917637bb662036.css">
   <link href="presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="presentation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
@@ -280,8 +300,8 @@ Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong
 </section>
 <section id="model-selection-with-cross-validation" class="slide level2 smaller">
 <h2>Model selection with cross-validation</h2>
-<div id="53fdd716" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="14">
+<div id="c491445b" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="42">
 <table class="caption-top">
 <colgroup>
 <col style="width: 23%">
@@ -356,11 +376,103 @@ Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong
 <li><p>Less susceptible to overfitting (versus <code>DecisionTreeClassifier</code>)</p></li>
 </ul>
 </section></section>
+<section>
 <section id="model-tuning" class="title-slide slide level1 center">
 <h1>Model tuning</h1>
-<p>Ximin’s part goes here</p>
-</section>
 
+</section>
+<section id="svc-rbf-model-has-2-hyperparameters" class="slide level2">
+<h2>SVC RBF model has 2 hyperparameters:</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><strong><code>C</code></strong>: Controls the trade-off between complexity and accuracy.</li>
+<li><strong><code>gamma</code></strong>: How far the influence of a single training example reaches.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><img data-src="img/hyperpara.png" style="width:100.0%" alt="Image of same data with different hyperparameters of SVC RBF"><span class="citation" data-cites="scikit-learn">(<a href="#/future-improvements" role="doc-biblioref" onclick="">Pedregosa et al. 2011</a>)</span></p>
+</div></div>
+</section>
+<section id="our-random-search-result" class="slide level2">
+<h2>Our random search result:</h2>
+
+<img data-src="../results/figures/car_hyperparameter.png" style="width:60.0%" class="r-stretch quarto-figure-center"><p class="caption">Heatmap of test scores obtained during hyperparameter optimisation</p><div id="6bf7e2d2" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-stdout">
+<pre><code></code></pre>
+</div>
+</div>
+<p><code>C</code> and <code>gamma</code> are 100.0 and 0.1</p>
+</section>
+<section id="fit-the-model-and-result" class="slide level2">
+<h2>Fit the model and result</h2>
+<div class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="44">
+<table class="caption-top">
+<caption>Classification report of the model</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">class</th>
+<th style="text-align: right;">precision</th>
+<th style="text-align: right;">recall</th>
+<th style="text-align: right;">f1-score</th>
+<th style="text-align: right;">support</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">acc</td>
+<td style="text-align: right;">0.962</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.981</td>
+<td style="text-align: right;">77</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">good</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.857</td>
+<td style="text-align: right;">0.923</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">unacc</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.996</td>
+<td style="text-align: right;">0.998</td>
+<td style="text-align: right;">242</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">vgood</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.991</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">macro avg</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.963</td>
+<td style="text-align: right;">0.975</td>
+<td style="text-align: right;">346</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">weighted avg</td>
+<td style="text-align: right;">0.992</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">346</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section></section>
 <section>
 <section id="conclusion" class="title-slide slide level1 center">
 <h1>Conclusion</h1>
@@ -373,13 +485,18 @@ Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong
 <li>Features like <code>safety</code> and <code>buying price</code> show clear relationships with the target class.</li>
 </ol>
 </section>
-<section id="future-improvements" class="slide level2">
+<section id="future-improvements" class="slide level2 smaller scrollable">
 <h2>Future improvements</h2>
 <ul>
 <li>Balance the dataset.</li>
 <li>Introduce additional features or preprocess categorical variables for better granularity.</li>
 </ul>
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-scikit-learn" class="csl-entry" role="listitem">
+Pedregosa, F., G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, et al. 2011. <span>“Scikit-Learn: Machine Learning in <span>P</span>ython.”</span> <em>Journal of Machine Learning Research</em> 12: 2825–30.
+</div>
+</div>
 </section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
