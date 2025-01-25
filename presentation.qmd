@@ -1,0 +1,34 @@
+---
+title: "Predicting Level of Acceptability of Cars"
+author: "Danish Karlin Isa, Nicholas Varabioff, Ximin Xu & Zuer Zhong"
+date: today
+format: revealjs
+---
+
+# Introduction
+
+## Car Evaluation Data Target
+
+Created by the efforts of M. Bohanec in the late 1980s
+
+### Acceptability
+
+1. `unacc`: Unacceptable. Cars that fail to meet basic criteria.
+2. `acc`: Acceptable. Cars that meet minimum requirements.
+3. `good`: Good. Cars that exceed average standards in some aspects.
+4. `vgood`: Very good. Cars that meet the highest standards.
+
+## Car Evaluation Data Features
+
+Created by the efforts of M. Bohanec in the late 1980s
+
+| Feature Name | Data Type | Values |
+| ------------ | --------- | ------ |
+| `buying` | Categorical | `low`, `med`, `high`, `vhigh` |
+| `maint` | Categorical | `low`, `med`, `high`, `vhigh` |
+| `doors` | Categorical | `2`, `3`, `4`, `5more` |
+| `persons` | Categorical | `2`, `4`, `more` |
+| `lug_boot` | Categorical | `small`, `med`, `big` |
+| `safety` | Categorical | `low`, `med`, `high` |
+
+
