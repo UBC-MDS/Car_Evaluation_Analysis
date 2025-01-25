@@ -1,0 +1,10 @@
+---
+title: "Predicting Level of Acceptability of Cars"
+author: "Danish Karlin Isa, Nicholas Varabioff, Ximin Xu & Zuer Zhong"
+date: today
+format: revealjs
+---
+
+# Slide 1
+
+Testing slides
