@@ -6,11 +6,11 @@
 <script src="presentation_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="presentation_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="presentation_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="presentation_files/libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.39">
+<link href="presentation_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.40">
 
   <meta name="author" content="Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong">
-  <meta name="dcterms.date" content="2025-01-24">
+  <meta name="dcterms.date" content="2025-01-25">
   <title>Predicting Level of Acceptability of Cars</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -138,7 +138,7 @@ Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong
 </div>
 </div>
 
-  <p class="date">2025-01-24</p>
+  <p class="date">2025-01-25</p>
 </section>
 <section>
 <section id="introduction" class="title-slide slide level1 center">
@@ -201,11 +201,45 @@ Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong
 </tbody>
 </table>
 </section></section>
+<section>
 <section id="exploratory-data-analysis" class="title-slide slide level1 center">
 <h1>Exploratory data analysis</h1>
-<p>Rebecca’s part goes here</p>
-</section>
 
+</section>
+<section id="target-class-distribution" class="slide level2">
+<h2>Target Class Distribution</h2>
+</section>
+<section id="target-class-distribution-1" class="slide level2">
+<h2>Target Class Distribution</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li>The dataset is imbalanced, with a majority of cars labeled as <code>unacceptable</code>.</li>
+<li><strong>Implications</strong>:
+<ul>
+<li>Models might overpredict the <code>unacceptable</code> class.</li>
+<li>Metrics like accuracy could be misleading, requiring metrics like Precision, Recall, and F1-score.</li>
+</ul></li>
+</ul>
+</div><div class="column" style="width:50%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="results/figures/target_distribution_raw.png" style="width:100.0%"></p>
+<figcaption>Target Class Distribution</figcaption>
+</figure>
+</div>
+</div></div>
+</section>
+<section id="feature-target-relationships" class="slide level2">
+<h2>Feature-Target Relationships</h2>
+<ul>
+<li>Understanding how features influence the target variable:
+<ul>
+<li>Safety (<code>high</code>) correlates with higher acceptability.</li>
+<li>Lower buying price (<code>low</code>) is often associated with <code>acceptable</code> or <code>good</code> cars. <img data-src="results/figures/feature_counts_by_class.png" alt="Features by Class"></li>
+</ul></li>
+</ul>
+</section></section>
 <section>
 <section id="selecting-our-model" class="title-slide slide level1 center">
 <h1>Selecting our model</h1>
@@ -246,8 +280,8 @@ Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong
 </section>
 <section id="model-selection-with-cross-validation" class="slide level2 smaller">
 <h2>Model selection with cross-validation</h2>
-<div id="1dbfd8ec" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
+<div id="53fdd716" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="14">
 <table class="caption-top">
 <colgroup>
 <col style="width: 23%">
@@ -325,8 +359,28 @@ Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong
 <section id="model-tuning" class="title-slide slide level1 center">
 <h1>Model tuning</h1>
 <p>Ximin’s part goes here</p>
+</section>
+
+<section>
+<section id="conclusion" class="title-slide slide level1 center">
+<h1>Conclusion</h1>
 
 </section>
+<section id="observations" class="slide level2">
+<h2>Observations</h2>
+<ol type="1">
+<li>Significant class imbalance with <code>unacceptable</code> being the dominant class.</li>
+<li>Features like <code>safety</code> and <code>buying price</code> show clear relationships with the target class.</li>
+</ol>
+</section>
+<section id="future-improvements" class="slide level2">
+<h2>Future improvements</h2>
+<ul>
+<li>Balance the dataset.</li>
+<li>Introduce additional features or preprocess categorical variables for better granularity.</li>
+</ul>
+
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
