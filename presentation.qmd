@@ -7,6 +7,17 @@ format: revealjs
 
 # Introduction
 
+## Car Evaluation Data Target
+
+Created by the efforts of M. Bohanec in the late 1980s
+
+### Acceptability
+
+1. `unacc`: Unacceptable. Cars that fail to meet basic criteria.
+2. `acc`: Acceptable. Cars that meet minimum requirements.
+3. `good`: Good. Cars that exceed average standards in some aspects.
+4. `vgood`: Very good. Cars that meet the highest standards.
+
 ## Car Evaluation Data Features
 
 Created by the efforts of M. Bohanec in the late 1980s
@@ -20,11 +31,4 @@ Created by the efforts of M. Bohanec in the late 1980s
 | `lug_boot` | Categorical | `small`, `med`, `big` |
 | `safety` | Categorical | `low`, `med`, `high` |
 
-## Car Evaluation Data Target
 
-### Acceptability
-
-1. `unacc`: Unacceptable. Cars that fail to meet basic criteria.
-2. `acc`: Acceptable. Cars that meet minimum requirements.
-3. `good`: Good. Cars that exceed average standards in some aspects.
-4. `vgood`: Very good. Cars that meet the highest standards.
