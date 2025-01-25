@@ -4,6 +4,7 @@ author: "Danish Karlin Isa, Nicholas Varabioff, Ximin Xu & Zuer Zhong"
 date: today
 format: revealjs
 jupyter: python3
+bibliography: references.bib
 ---
 
 # Introduction
@@ -99,8 +100,43 @@ Finding hyperplane that best separates the different classes (`quality`)
 
 # Model tuning
 
-Ximin's part goes here
+## SVC RBF model has 2 hyperparameters:
 
+::: {.columns}
+
+::: {.column width="50%"}
+- **`C`**: Controls the trade-off between complexity and accuracy.
+- **`gamma`**: How far the influence of a single training example reaches.
+:::
+
+::: {.column width="50%"}
+![Image of same data with different hyperparameters of SVC RBF](img/hyperpara.png){width=100%}[@scikit-learn]
+:::
+
+:::
+
+## Our random search result: 
+![Heatmap of test scores obtained during hyperparameter optimisation](../results/figures/car_hyperparameter.png){width=60%}
+```{python}
+import pickle
+test_scores_df = pd.read_csv("./results/tables/test_scores.csv").round(2)
+classification_report = pd.read_csv("./results/tables/classification_report.csv").round(3)
+with open('./results/models/car_analysis.pickle', 'rb') as f:
+    car_eva = pickle.load(f)
+model_selection_results = pd.read_csv("./results/tables/model_selection_results.csv").round(3)
+
+print()
+```
+
+`C` and `gamma` are `{python} car_eva.best_params_['svc__C']` and `{python} car_eva.best_params_['svc__gamma']`
+
+## Fit the model and result
+
+```{python}
+#| tbl-cap: Classification report of the model
+
+Markdown(classification_report.to_markdown(index=False))
+```
 
 # Conclusion
 
@@ -111,3 +147,5 @@ Ximin's part goes here
 ## Future improvements
    - Balance the dataset.
    - Introduce additional features or preprocess categorical variables for better granularity.
+
+## Reference
