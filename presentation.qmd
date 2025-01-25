@@ -147,3 +147,5 @@ Markdown(classification_report.to_markdown(index=False))
 ## Future improvements
    - Balance the dataset.
    - Introduce additional features or preprocess categorical variables for better granularity.
+
+## Reference
