@@ -3,6 +3,7 @@ title: "Predicting Level of Acceptability of Cars"
 author: "Danish Karlin Isa, Nicholas Varabioff, Ximin Xu & Zuer Zhong"
 date: today
 format: revealjs
+jupyter: python3
 ---
 
 # Introduction
@@ -32,3 +33,47 @@ Created by the efforts of M. Bohanec in the late 1980s
 | `safety` | Categorical | `low`, `med`, `high` |
 
 
+# Selecting our model
+
+```{python}
+# imports
+import pandas as pd
+from IPython.display import Markdown, display
+from tabulate import tabulate
+
+model_selection_results = pd.read_csv("results/tables/model_selection_results.csv").round(3)
+```
+
+## Shortlisting models from `sklearn`
+
+| Type | Model |
+| ---- | ----- |
+| Baseline | `DummyClassifier` |
+| Classification |  `DecisionTreeClassifier`, `KNearestNeighbors` |
+| Hyperplanes | `SVC` |
+| Probabilistic | `MultinomialNB` |
+| Regression | `LogisticRegression` |
+
+# Exploratory data analysis
+
+Rebecca's part goes here
+
+## Model selection with cross-validation {.smaller}
+
+```{python}
+Markdown(model_selection_results.to_markdown(index=False))
+```
+
+## The chosen model: `SVC`
+
+Finding hyperplane that best separates the different classes (`quality`)
+
+* "Curved" hyperplanes great for overlapping features
+
+* Shorter `predict` times (versus `KNearestNeighbors`)
+
+* Less susceptible to overfitting (versus `DecisionTreeClassifier`)
+
+# Model tuning
+
+Ximin's part goes here
