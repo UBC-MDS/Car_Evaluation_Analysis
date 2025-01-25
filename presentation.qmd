@@ -32,6 +32,9 @@ Created by the efforts of M. Bohanec in the late 1980s
 | `lug_boot` | Categorical | `small`, `med`, `big` |
 | `safety` | Categorical | `low`, `med`, `high` |
 
+# Exploratory data analysis
+
+Rebecca's part goes here
 
 # Selecting our model
 
@@ -53,10 +56,6 @@ model_selection_results = pd.read_csv("results/tables/model_selection_results.cs
 | Hyperplanes | `SVC` |
 | Probabilistic | `MultinomialNB` |
 | Regression | `LogisticRegression` |
-
-# Exploratory data analysis
-
-Rebecca's part goes here
 
 ## Model selection with cross-validation {.smaller}
 
