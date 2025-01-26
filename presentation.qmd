@@ -9,6 +9,8 @@ bibliography: references.bib
 
 # Introduction
 
+![](img/car_purchase_difficulty.jpg)
+
 ## Car Evaluation Data Target
 
 Created by the efforts of M. Bohanec in the late 1980s
@@ -33,7 +35,7 @@ Created by the efforts of M. Bohanec in the late 1980s
 | `lug_boot` | Categorical | `small`, `med`, `big` |
 | `safety` | Categorical | `low`, `med`, `high` |
 
-# Exploratory data analysis
+# Exploratory Data Analysis
 
 ## Target Class Distribution
 
@@ -61,7 +63,7 @@ Created by the efforts of M. Bohanec in the late 1980s
 ![Features by Class](results/figures/feature_counts_by_class.png)
 
 
-# Selecting our model
+# Selecting Our Model
 
 ```{python}
 # imports
@@ -98,7 +100,7 @@ Finding hyperplane that best separates the different classes (`quality`)
 
 * Less susceptible to overfitting (versus `DecisionTreeClassifier`)
 
-# Model tuning
+# Model Tuning
 
 ## SVC RBF model has 2 hyperparameters:
 
@@ -144,8 +146,8 @@ Markdown(classification_report.to_markdown(index=False))
 1. Significant class imbalance with `unacceptable` being the dominant class.
 2. Features like `safety` and `buying price` show clear relationships with the target class.
 
-## Future improvements
+## Future Improvements
    - Balance the dataset.
    - Introduce additional features or preprocess categorical variables for better granularity.
 
-## Reference
+## References
