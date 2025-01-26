@@ -9,8 +9,6 @@ bibliography: references.bib
 
 # Introduction
 
-![](img/car_purchase_difficulty.jpg)
-
 ## Car Evaluation Data Target
 
 Created by the efforts of M. Bohanec in the late 1980s
