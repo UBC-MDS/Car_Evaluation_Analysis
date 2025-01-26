@@ -116,7 +116,7 @@ Finding hyperplane that best separates the different classes (`quality`)
 :::
 
 ## Our random search result: 
-![Heatmap of test scores obtained during hyperparameter optimisation](../results/figures/car_hyperparameter.png){width=60%}
+![Heatmap of test scores obtained during hyperparameter optimisation](./results/figures/car_hyperparameter.png){width=60%}
 ```{python}
 import pickle
 test_scores_df = pd.read_csv("./results/tables/test_scores.csv").round(2)
