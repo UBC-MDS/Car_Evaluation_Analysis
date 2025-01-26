@@ -6,8 +6,8 @@
 <script src="presentation_files/libs/quarto-html/tippy.umd.min.js"></script>
 <link href="presentation_files/libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="presentation_files/libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="presentation_files/libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.6.39">
+<link href="presentation_files/libs/quarto-html/quarto-syntax-highlighting-549806ee2085284f45b00abea8c6df48.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.6.40">
 
   <meta name="author" content="Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong">
   <meta name="dcterms.date" content="2025-01-25">
@@ -228,9 +228,6 @@ Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong
 </section>
 <section id="target-class-distribution" class="slide level2">
 <h2>Target Class Distribution</h2>
-</section>
-<section id="target-class-distribution-1" class="slide level2">
-<h2>Target Class Distribution</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
@@ -252,13 +249,24 @@ Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong
 </section>
 <section id="feature-target-relationships" class="slide level2">
 <h2>Feature-Target Relationships</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
 <ul>
-<li>Understanding how features influence the target variable:
+<li>Record counts visualized by target and category.</li>
+<li><strong>Observation</strong>:
 <ul>
-<li>Safety (<code>high</code>) correlates with higher acceptability.</li>
-<li>Lower buying price (<code>low</code>) is often associated with <code>acceptable</code> or <code>good</code> cars. <img data-src="results/figures/feature_counts_by_class.png" alt="Features by Class"></li>
+<li>Majority class: <code>unacceptable</code>.</li>
+<li>Minority classes: <code>acceptable</code>, <code>good</code>, <code>vgood</code>.</li>
 </ul></li>
 </ul>
+</div><div class="column" style="width:70%;">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="results/figures/feature_counts_by_class.png" style="width:100.0%"></p>
+<figcaption>Distribution of Features by Class</figcaption>
+</figure>
+</div>
+</div></div>
 </section></section>
 <section>
 <section id="selecting-our-model" class="title-slide slide level1 center">
@@ -300,8 +308,8 @@ Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong
 </section>
 <section id="model-selection-with-cross-validation" class="slide level2 smaller">
 <h2>Model selection with cross-validation</h2>
-<div id="950f590f" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="18">
+<div id="82996d0c" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="15">
 <table class="caption-top">
 <colgroup>
 <col style="width: 23%">
@@ -396,7 +404,7 @@ Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong
 <section id="our-random-search-result" class="slide level2">
 <h2>Our random search result:</h2>
 
-<img data-src="./results/figures/car_hyperparameter.png" style="width:60.0%" class="r-stretch quarto-figure-center"><p class="caption">Heatmap of test scores obtained during hyperparameter optimisation</p><div id="cb48d21c" class="cell" data-execution_count="3">
+<img data-src="./results/figures/car_hyperparameter.png" style="width:60.0%" class="r-stretch quarto-figure-center"><p class="caption">Heatmap of test scores obtained during hyperparameter optimisation</p><div id="1a7eabf4" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-stdout">
 <pre><code></code></pre>
 </div>
@@ -406,7 +414,7 @@ Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong
 <section id="fit-the-model-and-result" class="slide level2">
 <h2>Fit the model and result</h2>
 <div class="cell" data-execution_count="4">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="20">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="17">
 <table class="caption-top">
 <caption>Classification report of the model</caption>
 <thead>
@@ -472,24 +480,14 @@ Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong
 </table>
 </div>
 </div>
-</section></section>
-<section>
-<section id="conclusion" class="title-slide slide level1 center">
-<h1>Conclusion</h1>
-
 </section>
-<section id="observations" class="slide level2">
-<h2>Observations</h2>
-<ol type="1">
-<li>Significant class imbalance with <code>unacceptable</code> being the dominant class.</li>
-<li>Features like <code>safety</code> and <code>buying price</code> show clear relationships with the target class.</li>
-</ol>
-</section>
-<section id="future-improvements" class="slide level2">
-<h2>Future improvements</h2>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
 <ul>
-<li>Balance the dataset.</li>
-<li>Introduce additional features or preprocess categorical variables for better granularity.</li>
+<li><strong>Best Model</strong>: SVM RBF achieved a test accuracy of <strong>95.2%</strong> and an <strong>F1 score of 0.99</strong>, showing strong performance even with class imbalance.</li>
+<li><strong>Key Insight</strong>: Slight recall issue for class “good” (0.857) suggests room for improvement.</li>
+<li><strong>Future Work</strong>: Incorporate numeric features (e.g., fuel efficiency) and additional data to enhance predictions.</li>
+<li><strong>Impact</strong>: The model provides a practical tool to support informed car purchasing decisions.</li>
 </ul>
 </section>
 <section id="reference" class="slide level2 smaller scrollable">
