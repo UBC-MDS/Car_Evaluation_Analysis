@@ -37,8 +37,6 @@ Created by the efforts of M. Bohanec in the late 1980s
 
 ## Target Class Distribution
 
-## Target Class Distribution
-
 ::: {.columns}
 
 :::: {.column width="50%"}
@@ -55,12 +53,20 @@ Created by the efforts of M. Bohanec in the late 1980s
 
 ## Feature-Target Relationships
 
-- Understanding how features influence the target variable:
-  - Safety (`high`) correlates with higher acceptability.
-  - Lower buying price (`low`) is often associated with `acceptable` or `good` cars.
-![Features by Class](results/figures/feature_counts_by_class.png)
+::: {.columns}
 
+::: {.column width="30%"}
+- Record counts visualized by target and category.
+- **Observation**:
+  - Majority class: `unacceptable`.
+  - Minority classes: `acceptable`, `good`, `vgood`.
+:::
 
+::: {.column width="70%"}
+![Distribution of Features by Class](results/figures/feature_counts_by_class.png){width=100%}
+:::
+
+:::
 # Selecting our model
 
 ```{python}
@@ -138,14 +144,11 @@ print()
 Markdown(classification_report.to_markdown(index=False))
 ```
 
-# Conclusion
+## Conclusion
 
-## Observations
-1. Significant class imbalance with `unacceptable` being the dominant class.
-2. Features like `safety` and `buying price` show clear relationships with the target class.
-
-## Future improvements
-   - Balance the dataset.
-   - Introduce additional features or preprocess categorical variables for better granularity.
+- **Best Model**: SVM RBF achieved a test accuracy of **95.2%** and an **F1 score of 0.99**, showing strong performance even with class imbalance.
+- **Key Insight**: Slight recall issue for class “good” (0.857) suggests room for improvement.
+- **Future Work**: Incorporate numeric features (e.g., fuel efficiency) and additional data to enhance predictions.
+- **Impact**: The model provides a practical tool to support informed car purchasing decisions.
 
 ## Reference
