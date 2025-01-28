@@ -4,6 +4,7 @@ author: "Danish Karlin Isa, Nicholas Varabioff, Ximin Xu & Zuer Zhong"
 date: today
 format: revealjs
 jupyter: python3
+bibliography: references.bib
 ---
 
 # Introduction
@@ -34,8 +35,38 @@ Created by the efforts of M. Bohanec in the late 1980s
 
 # Exploratory data analysis
 
-Rebecca's part goes here
+## Target Class Distribution
 
+::: {.columns}
+
+:::: {.column width="50%"}
+- The dataset is imbalanced, with a majority of cars labeled as `unacceptable`.
+- **Implications**:
+  - Models might overpredict the `unacceptable` class.
+  - Metrics like accuracy could be misleading, requiring metrics like Precision, Recall, and F1-score.
+::::
+
+:::: {.column width="50%"}
+![Target Class Distribution](results/figures/target_distribution_raw.png){width=100%}
+::::
+:::
+
+## Feature-Target Relationships
+
+::: {.columns}
+
+::: {.column width="30%"}
+- Record counts visualized by target and category.
+- **Observation**:
+  - Majority class: `unacceptable`.
+  - Minority classes: `acceptable`, `good`, `vgood`.
+:::
+
+::: {.column width="70%"}
+![Distribution of Features by Class](results/figures/feature_counts_by_class.png){width=100%}
+:::
+
+:::
 # Selecting our model
 
 ```{python}
@@ -76,4 +107,49 @@ Finding hyperplane that best separates the different classes (`quality`)
 
 # Model tuning
 
-Ximin's part goes here
+## SVC RBF model has 2 hyperparameters:
+
+::: {.columns}
+
+::: {.column width="50%"}
+- **`C`**: Controls the trade-off between complexity and accuracy.
+- **`gamma`**: How far the influence of a single training example reaches.
+:::
+
+::: {.column width="50%"}
+![Image of same data with different hyperparameters of SVC RBF](img/hyperpara.png){width=100%}[@scikit-learn]
+:::
+
+:::
+
+## Our random search result: 
+![Heatmap of test scores obtained during hyperparameter optimisation](./results/figures/car_hyperparameter.png){width=60%}
+```{python}
+import pickle
+test_scores_df = pd.read_csv("./results/tables/test_scores.csv").round(2)
+classification_report = pd.read_csv("./results/tables/classification_report.csv").round(3)
+with open('./results/models/car_analysis.pickle', 'rb') as f:
+    car_eva = pickle.load(f)
+model_selection_results = pd.read_csv("./results/tables/model_selection_results.csv").round(3)
+
+print()
+```
+
+`C` and `gamma` are `{python} car_eva.best_params_['svc__C']` and `{python} car_eva.best_params_['svc__gamma']`
+
+## Fit the model and result
+
+```{python}
+#| tbl-cap: Classification report of the model
+
+Markdown(classification_report.to_markdown(index=False))
+```
+
+## Conclusion
+
+- **Best Model**: SVM RBF achieved a test accuracy of **95.2%** and an **F1 score of 0.99**, showing strong performance even with class imbalance.
+- **Key Insight**: Slight recall issue for class “good” (0.857) suggests room for improvement.
+- **Future Work**: Incorporate numeric features (e.g., fuel efficiency) and additional data to enhance predictions.
+- **Impact**: The model provides a practical tool to support informed car purchasing decisions.
+
+## Reference
