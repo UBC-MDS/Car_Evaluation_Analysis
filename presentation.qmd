@@ -52,12 +52,13 @@ model_selection_results = pd.read_csv("results/tables/model_selection_results.cs
 | Type | Model |
 | ---- | ----- |
 | Baseline | `DummyClassifier` |
-| Classification |  `DecisionTreeClassifier`, `KNearestNeighbors` |
+| Tree-based |  `DecisionTreeClassifier` |
+| Distance-based | `KNearestNeighbors` |
 | Hyperplanes | `SVC` |
 | Probabilistic | `MultinomialNB` |
 | Regression | `LogisticRegression` |
 
-## Model selection with cross-validation {.smaller}
+## Accuracy scores with cross-validation {.smaller}
 
 ```{python}
 Markdown(model_selection_results.to_markdown(index=False))

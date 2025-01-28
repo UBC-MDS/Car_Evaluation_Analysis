@@ -10,7 +10,7 @@
   <meta name="generator" content="quarto-1.6.39">
 
   <meta name="author" content="Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong">
-  <meta name="dcterms.date" content="2025-01-24">
+  <meta name="dcterms.date" content="2025-01-27">
   <title>Predicting Level of Acceptability of Cars</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -138,7 +138,7 @@ Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong
 </div>
 </div>
 
-  <p class="date">2025-01-24</p>
+  <p class="date">2025-01-27</p>
 </section>
 <section>
 <section id="introduction" class="title-slide slide level1 center">
@@ -226,18 +226,22 @@ Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong
 <td><code>DummyClassifier</code></td>
 </tr>
 <tr class="even">
-<td>Classification</td>
-<td><code>DecisionTreeClassifier</code>, <code>KNearestNeighbors</code></td>
+<td>Tree-based</td>
+<td><code>DecisionTreeClassifier</code></td>
 </tr>
 <tr class="odd">
+<td>Distance-based</td>
+<td><code>KNearestNeighbors</code></td>
+</tr>
+<tr class="even">
 <td>Hyperplanes</td>
 <td><code>SVC</code></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>Probabilistic</td>
 <td><code>MultinomialNB</code></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>Regression</td>
 <td><code>LogisticRegression</code></td>
 </tr>
@@ -246,8 +250,8 @@ Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong
 </section>
 <section id="model-selection-with-cross-validation" class="slide level2 smaller">
 <h2>Model selection with cross-validation</h2>
-<div id="1dbfd8ec" class="cell" data-execution_count="2">
-<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="4">
+<div id="6cdb9aa7" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="6">
 <table class="caption-top">
 <colgroup>
 <col style="width: 23%">
@@ -327,6 +331,116 @@ Danish Karlin Isa, Nicholas Varabioff, Ximin Xu &amp; Zuer Zhong
 <p>Ximin’s part goes here</p>
 
 </section>
+<section id="svc-rbf-model-has-2-hyperparameters" class="slide level2">
+<h2>SVC RBF model has 2 hyperparameters:</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<ul>
+<li><strong><code>C</code></strong>: Controls the trade-off between complexity and accuracy.</li>
+<li><strong><code>gamma</code></strong>: How far the influence of a single training example reaches.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<p><img data-src="img/hyperpara.png" style="width:100.0%" alt="Image of same data with different hyperparameters of SVC RBF"><span class="citation" data-cites="scikit-learn">(<a href="#/reference" role="doc-biblioref" onclick="">Pedregosa et al. 2011</a>)</span></p>
+</div></div>
+</section>
+<section id="our-random-search-result" class="slide level2">
+<h2>Our random search result:</h2>
+
+<img data-src="./results/figures/car_hyperparameter.png" style="width:60.0%" class="r-stretch quarto-figure-center"><p class="caption">Heatmap of test scores obtained during hyperparameter optimisation</p><div id="527a58a0" class="cell" data-execution_count="3">
+<div class="cell-output cell-output-stdout">
+<pre><code></code></pre>
+</div>
+</div>
+<p><code>C</code> and <code>gamma</code> are 100.0 and 0.1</p>
+</section>
+<section id="fit-the-model-and-result" class="slide level2">
+<h2>Fit the model and result</h2>
+<div class="cell" data-execution_count="4">
+<div class="cell-output cell-output-display cell-output-markdown" data-execution_count="8">
+<table class="caption-top">
+<caption>Classification report of the model</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">class</th>
+<th style="text-align: right;">precision</th>
+<th style="text-align: right;">recall</th>
+<th style="text-align: right;">f1-score</th>
+<th style="text-align: right;">support</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">acc</td>
+<td style="text-align: right;">0.962</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.981</td>
+<td style="text-align: right;">77</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">good</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.857</td>
+<td style="text-align: right;">0.923</td>
+<td style="text-align: right;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">unacc</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0.996</td>
+<td style="text-align: right;">0.998</td>
+<td style="text-align: right;">242</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">vgood</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">accuracy</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.991</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">macro avg</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.963</td>
+<td style="text-align: right;">0.975</td>
+<td style="text-align: right;">346</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">weighted avg</td>
+<td style="text-align: right;">0.992</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">0.991</td>
+<td style="text-align: right;">346</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="conclusion" class="slide level2">
+<h2>Conclusion</h2>
+<ul>
+<li><strong>Best Model</strong>: SVM RBF achieved a test accuracy of <strong>95.2%</strong> and an <strong>F1 score of 0.99</strong>, showing strong performance even with class imbalance.</li>
+<li><strong>Key Insight</strong>: Slight recall issue for class “good” (0.857) suggests room for improvement.</li>
+<li><strong>Future Work</strong>: Incorporate numeric features (e.g., fuel efficiency) and additional data to enhance predictions.</li>
+<li><strong>Impact</strong>: The model provides a practical tool to support informed car purchasing decisions.</li>
+</ul>
+</section>
+<section id="reference" class="slide level2 smaller scrollable">
+<h2>Reference</h2>
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-scikit-learn" class="csl-entry" role="listitem">
+Pedregosa, F., G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, O. Grisel, M. Blondel, et al. 2011. <span>“Scikit-Learn: Machine Learning in <span>P</span>ython.”</span> <em>Journal of Machine Learning Research</em> 12: 2825–30.
+</div>
+</div>
+</section></section>
     </div>
   <div class="quarto-auto-generated-content" style="display: none;">
 <div class="footer footer-default">
